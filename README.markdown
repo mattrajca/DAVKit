@@ -1,7 +1,7 @@
 DAVKit
 ======
 
-DAVKit is a simple Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all completely asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit test are also included for all of the supported requests. If DAVKit is missing something, or you would like to submit a patch, please file an issue in the issue tracker.
+DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all completely asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit test are also included for all of the supported requests. If DAVKit is missing something, or you would like to submit a patch, please file an issue in the issue tracker.
 
 Basic Usage
 -----------
@@ -25,6 +25,11 @@ All of the WebDAV requests are sent using the `DAVSession` class. Initialize `DA
 
 To receive callbacks when the state of the request changes, register yourself as the delegate of the instance of `DAVRequest` before enqueueing it.
 
+
+Unit Tests
+----------
+
+Before running the `Tests` target, fill in your WebDAV test server's information into the `HOST`, `USERNAME`, and `PASSWORD` #defines in `DAVTest.h`. The tests currently don't work offline.
 
 Credits
 -------

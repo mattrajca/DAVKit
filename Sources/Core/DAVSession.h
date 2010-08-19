@@ -24,6 +24,7 @@
 
 /*
  The root URL should include a scheme and host, followed by any root paths
+ **NOTE: omit the trailing slash (/)**
  Example: http://idisk.me.com/steve
 */
 - (id)initWithRootURL:(NSString *)url credentials:(DAVCredentials *)credentials;

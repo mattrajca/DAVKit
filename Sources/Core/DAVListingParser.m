@@ -28,6 +28,7 @@
 		
 		_parser = [[NSXMLParser alloc] initWithData:data];
 		[_parser setDelegate:self];
+		[_parser setShouldProcessNamespaces:YES];
 	}
 	return self;
 }
@@ -54,7 +55,7 @@
 	
 	_currentString = [[NSMutableString alloc] init];
 	
-	if ([elementName isEqualToString:@"D:response"]) {
+	if ([elementName isEqualToString:@"response"]) {
 		_currentItem = [[DAVResponseItem alloc] init];
 	}
 }
@@ -71,22 +72,22 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-	if ([elementName isEqualToString:@"D:href"]) {
+	if ([elementName isEqualToString:@"href"]) {
 		_currentItem.href = _currentString;
 	}
-	else if ([elementName isEqualToString:@"D:getcontentlength"]) {
+	else if ([elementName isEqualToString:@"getcontentlength"]) {
 		_currentItem.contentLength = [_currentString integerValue];
 	}
-	else if ([elementName isEqualToString:@"D:getcontenttype"]) {
+	else if ([elementName isEqualToString:@"getcontenttype"]) {
 		_currentItem.contentType = _currentString;
 	}
-	else if ([elementName isEqualToString:@"D:modificationdate"]) {
+	else if ([elementName isEqualToString:@"modificationdate"]) {
 		_currentItem.modificationDate = [self _ISO8601DateWithString:_currentString];
 	}
-	else if ([elementName isEqualToString:@"D:creationdate"]) {
+	else if ([elementName isEqualToString:@"creationdate"]) {
 		_currentItem.creationDate = [self _ISO8601DateWithString:_currentString];
 	}
-	else if ([elementName isEqualToString:@"D:response"]) {
+	else if ([elementName isEqualToString:@"response"]) {
 		[_items addObject:_currentItem];
 		
 		[_currentItem release];

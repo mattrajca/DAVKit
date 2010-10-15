@@ -53,6 +53,11 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
 	attributes:(NSDictionary *)attributeDict {
 	
+	if (_currentString) {
+		[_currentString release];
+		_currentString = nil;
+	}
+	
 	_currentString = [[NSMutableString alloc] init];
 	
 	if ([elementName isEqualToString:@"response"]) {

@@ -1,7 +1,7 @@
 DAVKit
 ======
 
-DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all completely asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit test are also included for all of the supported requests. If DAVKit is missing something, or you would like to submit a patch, please file an issue in the issue tracker.
+DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit test are also included for all supported requests. If DAVKit is missing something or you would like to submit a patch, please file an issue in the issue tracker.
 
 Basic Usage
 -----------
@@ -19,17 +19,17 @@ All of the WebDAV requests are sent using the `DAVSession` class. Initialize `DA
 												  credentials:creds];
 
 
-`DAVSession` itself acts like a queue, limiting the number of requests it can make at any single time. The default is `2`. To enqueue a new WebDAV request, instantiate one of the subclasses of `DAVRequest`, and pass it to `DAVSession` as shown below:
+`DAVSession` acts like a queue, limiting the number of requests it can process at any point in time. The default is `2`. To enqueue a new WebDAV request, instantiate one of the subclasses of `DAVRequest`, and pass it to `DAVSession` as shown below:
 
 	[session enqueueRequest:subclassOfDAVRequest];
 
-To receive callbacks when the state of the request changes, register yourself as the delegate of the instance of `DAVRequest` before enqueueing it.
+To receive callbacks when the state of the request changes, register yourself as the delegate of an instance of `DAVRequest` before enqueueing it.
 
 
 Unit Tests
 ----------
 
-Before running the `Tests` target, fill in your WebDAV test server's information into the `HOST`, `USERNAME`, and `PASSWORD` #defines in `DAVTest.h`. The tests currently don't work offline.
+Before running the `Tests` target, fill in your WebDAV test server's information into the `HOST`, `USERNAME`, and `PASSWORD` #defines in `DAVTest.h`. The tests require network connectivity.
 
 Credits
 -------
@@ -39,7 +39,7 @@ Thanks to Peter Hosey for the ISO8601DateFormatter class!
 License
 -------
 
-Copyright (c) 2010 Matt Rajca
+Copyright (c) 2010-2011 Matt Rajca
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

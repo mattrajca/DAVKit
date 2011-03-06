@@ -13,7 +13,7 @@
 @synthesize creationDate;
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"href = %@; modificationDate = %@; contentLength = %d; "
+	return [NSString stringWithFormat:@"href = %@; modificationDate = %@; contentLength = %lld; "
 									  @"contentType = %@; creationDate = %@;",
 									  href, modificationDate, contentLength, contentType,
 									  creationDate];

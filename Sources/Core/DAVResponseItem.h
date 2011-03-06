@@ -9,14 +9,14 @@
   @private
 	NSString *href;
 	NSDate *modificationDate;
-	NSInteger contentLength;
+	long long contentLength;
 	NSString *contentType;
 	NSDate *creationDate;
 }
 
 @property (copy) NSString *href;
 @property (retain) NSDate *modificationDate;
-@property (assign) NSInteger contentLength;
+@property (assign) long long contentLength;
 @property (retain) NSString *contentType;
 @property (retain) NSDate *creationDate;
 

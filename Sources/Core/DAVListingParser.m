@@ -81,7 +81,7 @@
 		_currentItem.href = _currentString;
 	}
 	else if ([elementName isEqualToString:@"getcontentlength"]) {
-		_currentItem.contentLength = [_currentString integerValue];
+		_currentItem.contentLength = [_currentString longLongValue];
 	}
 	else if ([elementName isEqualToString:@"getcontenttype"]) {
 		_currentItem.contentType = _currentString;

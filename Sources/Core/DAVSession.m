@@ -55,6 +55,29 @@
 	[_queue addOperation:aRequest];
 }
 
+- (void)resetCredentialsCache {
+	// reset the credentials cache...		
+	NSDictionary *credentialsDict = [[NSURLCredentialStorage sharedCredentialStorage] allCredentials];
+	
+	if ([credentialsDict count] > 0) {
+		// the credentialsDict has NSURLProtectionSpace objs as keys and dicts of userName => NSURLCredential
+		NSEnumerator *protectionSpaceEnumerator = [credentialsDict keyEnumerator];
+		id urlProtectionSpace;
+		
+		// iterate over all NSURLProtectionSpaces
+		while (urlProtectionSpace = [protectionSpaceEnumerator nextObject]) {
+			NSEnumerator *userNameEnumerator = [[credentialsDict objectForKey:urlProtectionSpace] keyEnumerator];
+			id userName;
+			
+			// iterate over all usernames for this protectionspace, which are the keys for the actual NSURLCredentials
+			while (userName = [userNameEnumerator nextObject]) {
+				NSURLCredential *cred = [[credentialsDict objectForKey:urlProtectionSpace] objectForKey:userName];
+				[[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred forProtectionSpace:urlProtectionSpace];
+			}
+		}
+	}
+}
+
 - (void)dealloc {
 	[_queue release];
 	[_rootURL release];

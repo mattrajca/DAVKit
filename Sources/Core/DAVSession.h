@@ -33,4 +33,6 @@
 
 - (void)enqueueRequest:(DAVRequest *)aRequest;
 
+- (void)resetCredentialsCache;
+
 @end

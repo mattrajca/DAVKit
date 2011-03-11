@@ -10,7 +10,7 @@
 @implementation EMoveTest
 
 - (void)testRequest {
-	DAVCopyRequest *req = [[DAVCopyRequest alloc] initWithPath:@"davkittest/filetest22.txt"];
+	DAVMoveRequest *req = [[DAVMoveRequest alloc] initWithPath:@"davkittest/filetest22.txt"];
 	req.destinationPath = @"davkittest/filetest24.txt";
 	req.delegate = self;
 	

@@ -14,6 +14,7 @@
   @private
 	NSString *_rootURL;
 	DAVCredentials *_credentials;
+	BOOL _allowUntrustedCertificate;
 	NSOperationQueue *_queue;
 }
 
@@ -21,6 +22,7 @@
 @property (readonly) DAVCredentials *credentials;
 
 @property (assign) NSInteger maxConcurrentRequests; /* default is 2 */
+@property (assign) BOOL allowUntrustedCertificate;
 
 /*
  The root URL should include a scheme and host, followed by any root paths

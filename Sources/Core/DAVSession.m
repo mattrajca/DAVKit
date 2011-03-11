@@ -15,6 +15,7 @@
 @synthesize rootURL = _rootURL;
 @synthesize credentials = _credentials;
 @dynamic maxConcurrentRequests;
+@synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
 
 #define DEFAULT_CONCURRENT_REQS 2
 
@@ -31,7 +32,8 @@
 	if (self) {
 		_rootURL = [url copy];
 		_credentials = [credentials retain];
-		
+		_allowUntrustedCertificate = NO;
+
 		_queue = [[NSOperationQueue alloc] init];
 		[_queue setMaxConcurrentOperationCount:DEFAULT_CONCURRENT_REQS];
 	}

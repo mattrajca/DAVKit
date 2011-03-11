@@ -109,15 +109,33 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	}
 }
 
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	BOOL result = [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodDefault] ||
+	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPBasic] ||
+	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPDigest] ||
+	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+	return result;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	
-	DAVCredentials *cred = _parentSession.credentials;
-	
-	NSURLCredential *credential = [NSURLCredential credentialWithUser:cred.username
-															 password:cred.password
-														  persistence:NSURLCredentialPersistenceForSession];
-	
-	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+		if (_parentSession.allowUntrustedCertificate)
+			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+		
+		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+	} else {
+		if ([challenge previousFailureCount] == 0) {
+			DAVCredentials *cred = _parentSession.credentials;
+			NSURLCredential *credential = [NSURLCredential credentialWithUser:cred.username
+																	 password:cred.password
+																  persistence:NSURLCredentialPersistenceForSession];
+			
+			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+        } else {
+			// Wrong login/password
+			[[challenge sender] cancelAuthenticationChallenge:challenge];
+        }
+	}
 }
 
 - (void)_didFail:(NSError *)error {

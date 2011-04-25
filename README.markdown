@@ -8,18 +8,18 @@ Basic Usage
 
 To get started, include the DAVKit framework in your Mac OS X application target per usual. To use DAVKit on iPhone, copy the contents of the Sources directory into your own project.
 
-All of the WebDAV requests are sent using the `DAVSession` class. Initialize `DAVSession` like so:
+WebDAV requests are sent using the `DAVSession` class. Initialize `DAVSession` with a set of credentials and a root URL:
 
-	DAVCredentials *creds = [DAVCredentials credentialsWithUsername:@"USER"
-														   password:@"PASS"];
+	DAVCredentials *credentials = [DAVCredentials credentialsWithUsername:@"USER"
+																 password:@"PASS"];
 	
-	NSString *root = @"http://idisk.me.com/matt.rajca"; // don't include the trailing / (slash)
+	NSString *root = @"http://idisk.me.com/steve"; // don't include the trailing / (slash)
 	
 	DAVSession *session = [[DAVSession alloc] initWithRootURL:root
-												  credentials:creds];
+												  credentials:credentials];
 
 
-`DAVSession` acts like a queue, limiting the number of requests it can process at any point in time. The default is `2`. To enqueue a new WebDAV request, instantiate one of the subclasses of `DAVRequest`, and pass it to `DAVSession` as shown below:
+`DAVSession` acts like a queue, limiting the number of requests it can process at any point in time. The default is `2`. To enqueue a new WebDAV request, instantiate one of the subclasses of `DAVRequest` and pass it to `DAVSession` as shown below:
 
 	[session enqueueRequest:subclassOfDAVRequest];
 
@@ -29,7 +29,7 @@ To receive callbacks when the state of the request changes, register yourself as
 Unit Tests
 ----------
 
-Before running the `Tests` target, fill in your WebDAV test server's information into the `HOST`, `USERNAME`, and `PASSWORD` #defines in `DAVTest.h`. The tests require network connectivity.
+Before running the `Tests` target, fill in your WebDAV test server's information into the `HOST`, `USERNAME`, and `PASSWORD` #defines in `DAVTest.h`. The tests currently require network connectivity.
 
 Credits
 -------

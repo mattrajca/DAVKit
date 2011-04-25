@@ -15,6 +15,7 @@
 @synthesize rootURL = _rootURL;
 @synthesize credentials = _credentials;
 @dynamic maxConcurrentRequests;
+@synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
 
 #define DEFAULT_CONCURRENT_REQS 2
 
@@ -31,7 +32,8 @@
 	if (self) {
 		_rootURL = [url copy];
 		_credentials = [credentials retain];
-		
+		_allowUntrustedCertificate = NO;
+
 		_queue = [[NSOperationQueue alloc] init];
 		[_queue setMaxConcurrentOperationCount:DEFAULT_CONCURRENT_REQS];
 	}
@@ -51,6 +53,29 @@
 	
 	[aRequest setParentSession:self];
 	[_queue addOperation:aRequest];
+}
+
+- (void)resetCredentialsCache {
+	// reset the credentials cache...		
+	NSDictionary *credentialsDict = [[NSURLCredentialStorage sharedCredentialStorage] allCredentials];
+	
+	if ([credentialsDict count] > 0) {
+		// the credentialsDict has NSURLProtectionSpace objs as keys and dicts of userName => NSURLCredential
+		NSEnumerator *protectionSpaceEnumerator = [credentialsDict keyEnumerator];
+		id urlProtectionSpace;
+		
+		// iterate over all NSURLProtectionSpaces
+		while (urlProtectionSpace = [protectionSpaceEnumerator nextObject]) {
+			NSEnumerator *userNameEnumerator = [[credentialsDict objectForKey:urlProtectionSpace] keyEnumerator];
+			id userName;
+			
+			// iterate over all usernames for this protectionspace, which are the keys for the actual NSURLCredentials
+			while (userName = [userNameEnumerator nextObject]) {
+				NSURLCredential *cred = [[credentialsDict objectForKey:urlProtectionSpace] objectForKey:userName];
+				[[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred forProtectionSpace:urlProtectionSpace];
+			}
+		}
+	}
 }
 
 - (void)dealloc {

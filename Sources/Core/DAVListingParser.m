@@ -9,6 +9,7 @@
 
 #import "DAVResponseItem.h"
 #import "ISO8601DateFormatter.h"
+#import "NSDateRFC1123.h"
 
 @interface DAVListingParser ()
 
@@ -88,6 +89,9 @@
 	}
 	else if ([elementName isEqualToString:@"modificationdate"]) {
 		_currentItem.modificationDate = [self _ISO8601DateWithString:_currentString];
+	}
+	else if ([elementName isEqualToString:@"getlastmodified"]) {
+		_currentItem.modificationDate = [NSDate dateFromRFC1123:_currentString];
 	}
 	else if ([elementName isEqualToString:@"creationdate"]) {
 		_currentItem.creationDate = [self _ISO8601DateWithString:_currentString];

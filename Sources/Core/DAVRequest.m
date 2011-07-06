@@ -83,8 +83,8 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	[self willChangeValueForKey:@"isExecuting"];
 	
 	_executing = YES;
-	_connection = [[NSURLConnection connectionWithRequest:[self request]
-												 delegate:self] retain];
+	_connection = [NSURLConnection connectionWithRequest:[self request]
+												delegate:self];
 	
 	if ([_delegate respondsToSelector:@selector(requestDidBegin:)])
 		[_delegate requestDidBegin:self];
@@ -158,7 +158,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 - (void)didFail:(NSError *)error {
 	if ([_delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-		[_delegate request:self didFailWithError:[[error retain] autorelease]];
+		[_delegate request:self didFailWithError:error];
 	}
 	
 	[self didFinish];
@@ -179,18 +179,10 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	if ([_delegate respondsToSelector:@selector(request:didSucceedWithResult:)]) {
 		id result = [self resultForData:_data];
 		
-		[_delegate request:self didSucceedWithResult:[[result retain] autorelease]];
+		[_delegate request:self didSucceedWithResult:result];
 	}
 	
 	[self didFinish];
-}
-
-- (void)dealloc {
-	[_path release];
-	[_connection release];
-	[_data release];
-	
-	[super dealloc];
 }
 
 @end

@@ -32,7 +32,7 @@
 	self = [super init];
 	if (self) {
 		_rootURL = [url copy];
-		_credentials = [credentials retain];
+		_credentials = credentials;
 		_allowUntrustedCertificate = NO;
 		
 		_queue = [[NSOperationQueue alloc] init];
@@ -106,10 +106,6 @@
 
 - (void)dealloc {
 	[_queue removeObserver:self forKeyPath:@"operationCount"];
-	
-	[_queue release];
-	[_rootURL release];
-	[_credentials release];
 	
 	[super dealloc];
 }

@@ -43,7 +43,7 @@
 		return nil;
 	}
 	
-	return [[_items copy] autorelease];
+	return [_items copy];
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
@@ -55,7 +55,6 @@
 	attributes:(NSDictionary *)attributeDict {
 	
 	if (_currentString) {
-		[_currentString release];
 		_currentString = nil;
 	}
 	
@@ -71,11 +70,7 @@
 
 - (NSDate *)_ISO8601DateWithString:(NSString *)aString {
 	ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
-	
-	NSDate *date = [formatter dateFromString:aString];
-	[formatter release];
-	
-	return date;
+	return [formatter dateFromString:aString];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
@@ -107,22 +102,10 @@
 	}
 	else if ([elementName isEqualToString:@"response"]) {
 		[_items addObject:_currentItem];
-		
-		[_currentItem release];
 		_currentItem = nil;
 	}
 	
-	[_currentString release];
     _currentString = nil;
-}
-
-- (void)dealloc {
-	[_parser release];
-	[_currentString release];
-	[_items release];
-	[_currentItem release];
-	
-	[super dealloc];
 }
 
 @end

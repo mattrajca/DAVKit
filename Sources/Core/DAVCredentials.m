@@ -13,7 +13,7 @@
 @synthesize password = _password;
 
 + (id)credentialsWithUsername:(NSString *)username password:(NSString *)password {
-	return [[[[self class] alloc] initWithUsername:username password:password] autorelease];
+	return [[[self class] alloc] initWithUsername:username password:password];
 }
 
 - (id)initWithUsername:(NSString *)username password:(NSString *)password {
@@ -26,13 +26,6 @@
 		_password = [password copy];
 	}
 	return self;
-}
-
-- (void)dealloc {
-	[_username release];
-	[_password release];
-	
-	[super dealloc];
 }
 
 @end

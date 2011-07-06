@@ -31,13 +31,4 @@
 	return [self.href compare:item.href];
 }
 
-- (void)dealloc {
-	[href release];
-	[modificationDate release];
-	[contentType release];
-	[creationDate release];
-	
-	[super dealloc];
-}
-
 @end

@@ -34,12 +34,7 @@
 	else
 		[req setValue:@"F" forHTTPHeaderField:@"Overwrite"];
 	
-	return [req autorelease];
-}
-
-- (void)dealloc {
-	[_destinationPath release];
-	[super dealloc];
+	return req;
 }
 
 @end
@@ -48,7 +43,7 @@
 @implementation DAVDeleteRequest
 
 - (NSURLRequest *)request {
-	return [[self newRequestWithPath:self.path method:@"DELETE"] autorelease];
+	return [self newRequestWithPath:self.path method:@"DELETE"];
 }
 
 @end
@@ -57,7 +52,7 @@
 @implementation DAVGetRequest
 
 - (NSURLRequest *)request {
-	return [[self newRequestWithPath:self.path method:@"GET"] autorelease];
+	return [self newRequestWithPath:self.path method:@"GET"];
 }
 
 - (id)resultForData:(NSData *)data {
@@ -96,7 +91,7 @@
 	
 	[req setHTTPBody:[xml dataUsingEncoding:NSUTF8StringEncoding]];
 	
-	return [req autorelease];
+	return req;
 }
 
 - (id)resultForData:(NSData *)data {
@@ -111,8 +106,6 @@
 		#endif
 	}
 	
-	[p release];
-	
 	return items;
 }
 
@@ -122,7 +115,7 @@
 @implementation DAVMakeCollectionRequest
 
 - (NSURLRequest *)request {
-	return [[self newRequestWithPath:self.path method:@"MKCOL"] autorelease];
+	return [self newRequestWithPath:self.path method:@"MKCOL"];
 }
 
 @end
@@ -151,12 +144,7 @@
 	[req setValue:len forHTTPHeaderField:@"Content-Length"];
     [req setHTTPBody:_pdata];
 	
-	return [req autorelease];
-}
-
-- (void)dealloc {
-	[_pdata release];
-	[super dealloc];
+	return req;
 }
 
 @end

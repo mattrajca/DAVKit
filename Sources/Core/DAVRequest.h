@@ -23,7 +23,7 @@ extern NSString *const DAVClientErrorDomain;
 
 @property (readonly) NSString *path;
 
-@property (assign) __weak id < DAVRequestDelegate > delegate;
+@property (weak) __weak id < DAVRequestDelegate > delegate;
 
 - (id)initWithPath:(NSString *)aPath;
 

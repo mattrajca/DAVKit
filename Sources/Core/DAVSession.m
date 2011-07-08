@@ -34,7 +34,7 @@
 		_rootURL = [url copy];
 		_credentials = [credentials retain];
 		_allowUntrustedCertificate = NO;
-
+		
 		_queue = [[NSOperationQueue alloc] init];
 		[_queue setMaxConcurrentOperationCount:DEFAULT_CONCURRENT_REQS];
 	}
@@ -60,7 +60,7 @@
 }
 
 - (void)resetCredentialsCache {
-	// reset the credentials cache...		
+	// reset the credentials cache...
 	NSDictionary *credentialsDict = [[NSURLCredentialStorage sharedCredentialStorage] allCredentials];
 	
 	if ([credentialsDict count] > 0) {
@@ -69,14 +69,16 @@
 		id urlProtectionSpace;
 		
 		// iterate over all NSURLProtectionSpaces
-		while (urlProtectionSpace = [protectionSpaceEnumerator nextObject]) {
+		while ((urlProtectionSpace = [protectionSpaceEnumerator nextObject])) {
 			NSEnumerator *userNameEnumerator = [[credentialsDict objectForKey:urlProtectionSpace] keyEnumerator];
 			id userName;
 			
-			// iterate over all usernames for this protectionspace, which are the keys for the actual NSURLCredentials
-			while (userName = [userNameEnumerator nextObject]) {
+			// iterate over all usernames for this protection space, which are the keys for the actual NSURLCredentials
+			while ((userName = [userNameEnumerator nextObject])) {
 				NSURLCredential *cred = [[credentialsDict objectForKey:urlProtectionSpace] objectForKey:userName];
-				[[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred forProtectionSpace:urlProtectionSpace];
+				
+				[[NSURLCredentialStorage sharedCredentialStorage] removeCredential:cred
+																forProtectionSpace:urlProtectionSpace];
 			}
 		}
 	}

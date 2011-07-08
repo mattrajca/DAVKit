@@ -110,7 +110,18 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	}
 }
 
+#define DEFAULT_AUTHENTICATION_RETRY 2
+
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	if ([challenge previousFailureCount] > DEFAULT_AUTHENTICATION_RETRY) {
+		NSError *error = [NSError errorWithDomain:DAVClientErrorDomain
+											 code:403
+										 userInfo:nil];
+		
+		[self _didFail:error];
+		return;
+	}
+	
 	NSURLCredential *credential = [NSURLCredential credentialWithUser:_credentials.username
 															 password:_credentials.password
 														  persistence:NSURLCredentialPersistenceForSession];

@@ -116,13 +116,15 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPBasic] ||
 	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPDigest] ||
 	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+	
 	return result;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
 		if (_allowUntrustedCertificate)
-			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
+				 forAuthenticationChallenge:challenge];
 		
 		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 	} else {
@@ -132,10 +134,10 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 																  persistence:NSURLCredentialPersistenceForSession];
 			
 			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-        } else {
+		} else {
 			// Wrong login/password
 			[[challenge sender] cancelAuthenticationChallenge:challenge];
-        }
+		}
 	}
 }
 

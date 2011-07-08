@@ -20,8 +20,9 @@ extern NSString *const DAVClientErrorDomain;
 	BOOL _executing;
 }
 
-@property (nonatomic, retain) NSString *rootURL;
-@property (nonatomic, retain) DAVCredentials *credentials;
+@property (retain) NSString *rootURL;
+@property (retain) DAVCredentials *credentials;
+@property (assign) BOOL allowUntrustedCertificate;
 
 @property (readonly) NSString *path;
 

@@ -33,6 +33,8 @@
 		C9FED5C7121D98D600DD1DFF /* FListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FED5BE121D98D600DD1DFF /* FListTest.m */; };
 		C9FED5C8121D98D600DD1DFF /* GDeleteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FED5C0121D98D600DD1DFF /* GDeleteTest.m */; };
 		C9FF7821121C7224001250C7 /* DAVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* DAVKit.framework */; };
+		F94970ED132A093600713958 /* NSDateRFC1123.h in Headers */ = {isa = PBXBuildFile; fileRef = F94970EB132A093600713958 /* NSDateRFC1123.h */; };
+		F94970EE132A093600713958 /* NSDateRFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = F94970EC132A093600713958 /* NSDateRFC1123.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		C9FF77EC121C6F51001250C7 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FF77ED121C6F51001250C7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		F94970EB132A093600713958 /* NSDateRFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateRFC1123.h; sourceTree = "<group>"; };
+		F94970EC132A093600713958 /* NSDateRFC1123.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateRFC1123.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 				C9FF779F121C6BDF001250C7 /* Core */,
 				C9FF7787121C6B8B001250C7 /* ISO8601 */,
 				C9FF77A1121C6BF0001250C7 /* Private */,
+				F94970EA132A093600713958 /* RFC1123 */,
 				C9FF77A2121C6C1A001250C7 /* Tests */,
 				C9FED591121D989900DD1DFF /* DAVKit.h */,
 			);
@@ -247,6 +252,16 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
+		F94970EA132A093600713958 /* RFC1123 */ = {
+			isa = PBXGroup;
+			children = (
+				F94970EB132A093600713958 /* NSDateRFC1123.h */,
+				F94970EC132A093600713958 /* NSDateRFC1123.m */,
+			);
+			name = RFC1123;
+			path = Sources/RFC1123;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -263,6 +278,7 @@
 				C9FED5A5121D989900DD1DFF /* DAVSession.h in Headers */,
 				C9FED5AF121D98B800DD1DFF /* ISO8601DateFormatter.h in Headers */,
 				C9181BBC121DC31D0022E4AC /* DAVResponseItem.h in Headers */,
+				F94970ED132A093600713958 /* NSDateRFC1123.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +394,7 @@
 				C9FED5A6121D989900DD1DFF /* DAVSession.m in Sources */,
 				C9FED5B0121D98B800DD1DFF /* ISO8601DateFormatter.m in Sources */,
 				C9181BBD121DC31D0022E4AC /* DAVResponseItem.m in Sources */,
+				F94970EE132A093600713958 /* NSDateRFC1123.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

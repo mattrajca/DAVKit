@@ -25,6 +25,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 #define DEFAULT_TIMEOUT 60
 
 @synthesize rootURL = _rootURL, credentials = _credentials;
+@synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
 @synthesize path = _path;
 @synthesize delegate = _delegate;
 
@@ -110,23 +111,32 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	}
 }
 
-#define DEFAULT_AUTHENTICATION_RETRY 2
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	BOOL result = [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodDefault] ||
+	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPBasic] ||
+	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPDigest] ||
+	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+	return result;
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([challenge previousFailureCount] > DEFAULT_AUTHENTICATION_RETRY) {
-		NSError *error = [NSError errorWithDomain:DAVClientErrorDomain
-											 code:403
-										 userInfo:nil];
+	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+		if (_allowUntrustedCertificate)
+			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 		
-		[self _didFail:error];
-		return;
+		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+	} else {
+		if ([challenge previousFailureCount] == 0) {
+			NSURLCredential *credential = [NSURLCredential credentialWithUser:_credentials.username
+																	 password:_credentials.password
+																  persistence:NSURLCredentialPersistenceForSession];
+			
+			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+        } else {
+			// Wrong login/password
+			[[challenge sender] cancelAuthenticationChallenge:challenge];
+        }
 	}
-	
-	NSURLCredential *credential = [NSURLCredential credentialWithUser:_credentials.username
-															 password:_credentials.password
-														  persistence:NSURLCredentialPersistenceForSession];
-	
-	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 }
 
 - (void)_didFail:(NSError *)error {

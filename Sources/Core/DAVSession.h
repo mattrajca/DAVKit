@@ -19,6 +19,7 @@
 
 @property (readonly) NSString *rootURL;
 @property (readonly) DAVCredentials *credentials;
+@property (assign) BOOL allowUntrustedCertificate;
 
 @property (assign) NSInteger maxConcurrentRequests; /* default is 2 */
 
@@ -30,5 +31,7 @@
 - (id)initWithRootURL:(NSString *)url credentials:(DAVCredentials *)credentials;
 
 - (void)enqueueRequest:(DAVRequest *)aRequest;
+
+- (void)resetCredentialsCache;
 
 @end

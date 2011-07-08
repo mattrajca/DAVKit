@@ -23,7 +23,7 @@
 
 - (void)request:(DAVRequest *)aRequest didSucceedWithResult:(id)result {
 	STAssertTrue([result isKindOfClass:[NSArray class]], @"Expecting a NSArray object for PROPFIND requests");
-	STAssertTrue([result count] == 4, @"Array should contain 4 objects");
+	STAssertTrue([result count] == 3, @"Array should contain 3 objects");
 	
 	[self notifyDone];
 }

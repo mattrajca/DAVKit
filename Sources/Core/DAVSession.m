@@ -9,6 +9,7 @@
 
 #import "DAVRequest.h"
 #import "DAVRequest+Private.h"
+#import "DAVRequests.h"
 
 @implementation DAVSession
 
@@ -49,7 +50,9 @@
 - (void)enqueueRequest:(DAVRequest *)aRequest {
 	NSParameterAssert(aRequest != nil);
 	
-	[aRequest setParentSession:self];
+	aRequest.credentials = _credentials;
+	aRequest.rootURL = _rootURL;
+	
 	[_queue addOperation:aRequest];
 }
 

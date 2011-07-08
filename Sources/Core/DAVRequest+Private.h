@@ -9,7 +9,6 @@
 
 @interface DAVRequest (Private)
 
-- (void)setParentSession:(DAVSession *)parentSession;
 - (NSMutableURLRequest *)newRequestWithPath:(NSString *)path method:(NSString *)method;
 
 @end

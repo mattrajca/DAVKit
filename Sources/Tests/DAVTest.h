@@ -8,9 +8,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <DAVKit/DAVKit.h>
 
-#define HOST @""
-#define USERNAME @""
-#define PASSWORD @""
+#import "DAVTestSettings.h"
 
 @interface DAVTest : SenTestCase < DAVRequestDelegate > {
   @private

@@ -5,7 +5,7 @@
 //  Copyright Matt Rajca 2010. All rights reserved.
 //
 
-@class DAVSession;
+@class DAVCredentials;
 @protocol DAVRequestDelegate;
 
 /* codes returned are HTTP status codes */
@@ -18,10 +18,10 @@ extern NSString *const DAVClientErrorDomain;
 	NSMutableData *_data;
 	BOOL _done;
 	BOOL _executing;
-	
-	__weak DAVSession *_parentSession;
-	__weak id < DAVRequestDelegate > _delegate;
 }
+
+@property (nonatomic, retain) NSString *rootURL;
+@property (nonatomic, retain) DAVCredentials *credentials;
 
 @property (readonly) NSString *path;
 

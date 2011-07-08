@@ -54,6 +54,7 @@
 		8DC2EF5B0486A6940098B216 /* DAVKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DAVKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9181BBA121DC31D0022E4AC /* DAVResponseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVResponseItem.h; path = Sources/Core/DAVResponseItem.h; sourceTree = "<group>"; };
 		C9181BBB121DC31D0022E4AC /* DAVResponseItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVResponseItem.m; path = Sources/Core/DAVResponseItem.m; sourceTree = "<group>"; };
+		C939F7D313C67F6100925808 /* DAVTestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVTestSettings.h; path = Sources/Tests/DAVTestSettings.h; sourceTree = "<group>"; };
 		C9FED58F121D989900DD1DFF /* DAVCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVCredentials.h; path = Sources/Core/DAVCredentials.h; sourceTree = "<group>"; };
 		C9FED590121D989900DD1DFF /* DAVCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVCredentials.m; path = Sources/Core/DAVCredentials.m; sourceTree = "<group>"; };
 		C9FED591121D989900DD1DFF /* DAVKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVKit.h; path = Sources/Core/DAVKit.h; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 		C9FF77A2121C6C1A001250C7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C939F7D313C67F6100925808 /* DAVTestSettings.h */,
 				C9FED5B1121D98D600DD1DFF /* AMkColTest.h */,
 				C9FED5B2121D98D600DD1DFF /* AMkColTest.m */,
 				C9FED5B3121D98D600DD1DFF /* BPutTest.h */,

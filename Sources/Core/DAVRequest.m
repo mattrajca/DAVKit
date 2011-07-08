@@ -24,6 +24,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 #define DEFAULT_TIMEOUT 60
 
+@synthesize rootURL = _rootURL, credentials = _credentials;
 @synthesize path = _path;
 @synthesize delegate = _delegate;
 
@@ -40,7 +41,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 - (NSString *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);
 	
-	return [NSString stringWithFormat:@"%@/%@", _parentSession.rootURL, aPath];
+	return [NSString stringWithFormat:@"%@/%@", _rootURL, aPath];
 }
 
 - (BOOL)isConcurrent {
@@ -110,11 +111,8 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	
-	DAVCredentials *cred = _parentSession.credentials;
-	
-	NSURLCredential *credential = [NSURLCredential credentialWithUser:cred.username
-															 password:cred.password
+	NSURLCredential *credential = [NSURLCredential credentialWithUser:_credentials.username
+															 password:_credentials.password
 														  persistence:NSURLCredentialPersistenceForSession];
 	
 	[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
@@ -150,6 +148,8 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 }
 
 - (void)dealloc {
+	[_rootURL release];
+	[_credentials release];
 	[_path release];
 	[_connection release];
 	[_data release];
@@ -171,10 +171,6 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
     [request setTimeoutInterval:DEFAULT_TIMEOUT];
 	
 	return request;
-}
-
-- (void)setParentSession:(DAVSession *)parentSession {
-	_parentSession = parentSession;
 }
 
 @end

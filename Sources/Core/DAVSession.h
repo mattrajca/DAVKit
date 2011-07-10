@@ -12,12 +12,12 @@
 
 @interface DAVSession : NSObject {
   @private
-	NSString *_rootURL;
+	NSURL *_rootURL;
 	DAVCredentials *_credentials;
 	NSOperationQueue *_queue;
 }
 
-@property (readonly) NSString *rootURL;
+@property (readonly) NSURL *rootURL;
 @property (readonly) DAVCredentials *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
 
@@ -28,7 +28,7 @@
  **NOTE: omit the trailing slash (/)**
  Example: http://idisk.me.com/steve
 */
-- (id)initWithRootURL:(NSString *)url credentials:(DAVCredentials *)credentials;
+- (id)initWithRootURL:(NSURL *)url credentials:(DAVCredentials *)credentials;
 
 - (void)enqueueRequest:(DAVRequest *)aRequest;
 

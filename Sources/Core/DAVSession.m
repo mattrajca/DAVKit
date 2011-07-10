@@ -20,7 +20,7 @@
 
 #define DEFAULT_CONCURRENT_REQS 2
 
-- (id)initWithRootURL:(NSString *)url credentials:(DAVCredentials *)credentials {
+- (id)initWithRootURL:(NSURL *)url credentials:(DAVCredentials *)credentials {
 	NSParameterAssert(url != nil);
 	
 	if (!credentials) {

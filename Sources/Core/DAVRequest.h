@@ -20,7 +20,7 @@ extern NSString *const DAVClientErrorDomain;
 	BOOL _executing;
 }
 
-@property (retain) NSString *rootURL;
+@property (retain) NSURL *rootURL;
 @property (retain) DAVCredentials *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
 

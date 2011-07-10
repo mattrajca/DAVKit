@@ -39,7 +39,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	return self;
 }
 
-- (NSString *)concatenatedURLWithPath:(NSString *)aPath {
+- (NSURL *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);
 	
 	return [_rootURL URLByAppendingPathComponent:aPath];
@@ -186,7 +186,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 @implementation DAVRequest (Private)
 
 - (NSMutableURLRequest *)newRequestWithPath:(NSString *)path method:(NSString *)method {
-	NSURL *url = [NSURL URLWithString:[self concatenatedURLWithPath:path]];
+	NSURL *url = [self concatenatedURLWithPath:path];
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
 	[request setHTTPMethod:method];

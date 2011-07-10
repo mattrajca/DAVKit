@@ -22,12 +22,12 @@
 - (NSURLRequest *)request {
 	NSParameterAssert(_destinationPath != nil);
 	
-	NSString *dp = [self concatenatedURLWithPath:_destinationPath];
+	NSURL *dp = [self concatenatedURLWithPath:_destinationPath];
 	
 	NSMutableURLRequest *req = [self newRequestWithPath:self.path
 												 method:[self method]];
 	
-	[req setValue:dp forHTTPHeaderField:@"Destination"];
+	[req setValue:[dp absoluteString] forHTTPHeaderField:@"Destination"];
 	
 	if (_overwrite)
 		[req setValue:@"T" forHTTPHeaderField:@"Overwrite"];

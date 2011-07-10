@@ -30,7 +30,7 @@ extern NSString *const DAVClientErrorDomain;
 
 - (id)initWithPath:(NSString *)aPath;
 
-- (NSString *)concatenatedURLWithPath:(NSString *)aPath;
+- (NSURL *)concatenatedURLWithPath:(NSString *)aPath;
 
 /* must be overriden by subclasses */
 - (NSURLRequest *)request;

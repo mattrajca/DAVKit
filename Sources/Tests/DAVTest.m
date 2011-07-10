@@ -21,7 +21,9 @@
 	STAssertTrue([USERNAME isEqualToString:credentials.username], @"Couldn't set username");
 	STAssertTrue([PASSWORD isEqualToString:credentials.password], @"Couldn't set password");
 	
-	_session = [[DAVSession alloc] initWithRootURL:HOST credentials:credentials];
+	NSURL *host = [NSURL URLWithString:HOST];
+	
+	_session = [[DAVSession alloc] initWithRootURL:host credentials:credentials];
 	STAssertNotNil(_session, @"Couldn't create DAV session");
 	
 	_session.maxConcurrentRequests = 1;

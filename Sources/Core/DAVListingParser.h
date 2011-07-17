@@ -13,6 +13,7 @@
 	NSMutableString *_currentString;
 	NSMutableArray *_items;
 	DAVResponseItem *_currentItem;
+	BOOL _inResponseType;
 }
 
 - (id)initWithData:(NSData *)data;

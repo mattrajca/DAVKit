@@ -64,6 +64,9 @@
 	if ([elementName isEqualToString:@"response"]) {
 		_currentItem = [[DAVResponseItem alloc] init];
 	}
+	else if ([elementName isEqualToString:@"resourcetype"]) {
+		_inResponseType = YES;
+	}
 }
 
 - (NSDate *)_ISO8601DateWithString:(NSString *)aString {
@@ -95,6 +98,12 @@
 	}
 	else if ([elementName isEqualToString:@"creationdate"]) {
 		_currentItem.creationDate = [self _ISO8601DateWithString:_currentString];
+	}
+	else if ([elementName isEqualToString:@"resourcetype"]) {
+		_inResponseType = NO;
+	}
+	else if ([elementName isEqualToString:@"collection"] && _inResponseType) {
+		_currentItem.resourceType = DAVResourceTypeCollection;
 	}
 	else if ([elementName isEqualToString:@"response"]) {
 		[_items addObject:_currentItem];

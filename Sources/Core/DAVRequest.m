@@ -131,7 +131,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 		if ([challenge previousFailureCount] == 0) {
 			NSURLCredential *credential = [NSURLCredential credentialWithUser:_credentials.username
 																	 password:_credentials.password
-																  persistence:NSURLCredentialPersistenceForSession];
+																  persistence:NSURLCredentialPersistenceNone];
 			
 			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 		} else {

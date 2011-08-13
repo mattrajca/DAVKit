@@ -17,8 +17,8 @@
 	NSOperationQueue *_queue;
 }
 
-@property (readonly) NSURL *rootURL;
-@property (readonly) DAVCredentials *credentials;
+@property (strong, readonly) NSURL *rootURL;
+@property (strong, readonly) DAVCredentials *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
 
 @property (readonly) NSUInteger requestCount; /* KVO compliant */

@@ -13,8 +13,8 @@
 	NSString *_password;
 }
 
-@property (readonly) NSString *username;
-@property (readonly) NSString *password;
+@property (strong, readonly) NSString *username;
+@property (strong, readonly) NSString *password;
 
 + (id)credentialsWithUsername:(NSString *)username password:(NSString *)password;
 - (id)initWithUsername:(NSString *)username password:(NSString *)password;

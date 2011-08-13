@@ -105,9 +105,11 @@
 	NSError *error = nil;
 	NSArray *items = [p parse:&error];
 	
-	#ifdef DEBUG
-		NSLog(@"XML Parse error: %@", error);
-	#endif
+	if (error) {
+		#ifdef DEBUG
+			NSLog(@"XML Parse error: %@", error);
+		#endif
+	}
 	
 	[p release];
 	

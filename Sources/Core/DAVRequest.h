@@ -43,12 +43,14 @@ extern NSString *const DAVClientErrorDomain;
 
 @protocol DAVRequestDelegate < NSObject >
 
-@optional
-
 // The error can be a NSURLConnection error or a WebDAV error
 - (void)request:(DAVRequest *)aRequest didFailWithError:(NSError *)error;
 
 // The resulting object varies depending on the request type
 - (void)request:(DAVRequest *)aRequest didSucceedWithResult:(id)result;
+
+@optional
+
+- (void)requestDidBegin:(DAVRequest *)aRequest;
 
 @end

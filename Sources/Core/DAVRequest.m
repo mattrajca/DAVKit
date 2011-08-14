@@ -71,6 +71,9 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	_connection = [[NSURLConnection connectionWithRequest:[self request]
 												 delegate:self] retain];
 	
+	if ([_delegate respondsToSelector:@selector(requestDidBegin:)])
+		[_delegate requestDidBegin:self];
+	
 	[self didChangeValueForKey:@"isExecuting"];
 }
 

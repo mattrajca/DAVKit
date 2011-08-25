@@ -21,6 +21,7 @@
 @property (readonly) DAVCredentials *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
 
+@property (readonly) NSUInteger requestCount; /* KVO compliant */
 @property (assign) NSInteger maxConcurrentRequests; /* default is 2 */
 
 /*

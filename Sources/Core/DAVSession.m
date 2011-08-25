@@ -16,7 +16,7 @@
 @synthesize rootURL = _rootURL;
 @synthesize credentials = _credentials;
 @synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
-@dynamic maxConcurrentRequests;
+@dynamic requestCount, maxConcurrentRequests;
 
 #define DEFAULT_CONCURRENT_REQS 2
 
@@ -37,8 +37,24 @@
 		
 		_queue = [[NSOperationQueue alloc] init];
 		[_queue setMaxConcurrentOperationCount:DEFAULT_CONCURRENT_REQS];
+		
+		[_queue addObserver:self
+				 forKeyPath:@"operationCount"
+					options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
+					context:NULL];
 	}
 	return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqualToString:@"operationCount"]) {
+		[self willChangeValueForKey:@"requestCount"];
+		[self didChangeValueForKey:@"requestCount"];
+	}
+}
+
+- (NSUInteger)requestCount {
+	return [_queue operationCount];
 }
 
 - (NSInteger)maxConcurrentRequests {

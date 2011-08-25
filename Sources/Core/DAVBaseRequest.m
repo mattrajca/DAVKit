@@ -12,11 +12,4 @@
 @synthesize rootURL = _rootURL, credentials = _credentials;
 @synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
 
-- (void)dealloc {
-    [_rootURL release];
-	[_credentials release];
-	
-	[super dealloc];
-}
-
 @end

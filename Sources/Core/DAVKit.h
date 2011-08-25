@@ -7,6 +7,7 @@
 
 #import <DAVKit/DAVCredentials.h>
 #import <DAVKit/DAVRequest.h>
+#import <DAVKit/DAVRequestGroup.h>
 #import <DAVKit/DAVRequests.h>
 #import <DAVKit/DAVResponseItem.h>
 #import <DAVKit/DAVSession.h>

@@ -159,7 +159,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	[self willChangeValueForKey:@"isFinished"];
 	
 	_done = YES;
-	_executing = YES;
+	_executing = NO;
 	
 	[self didChangeValueForKey:@"isExecuting"];
 	[self didChangeValueForKey:@"isFinished"];

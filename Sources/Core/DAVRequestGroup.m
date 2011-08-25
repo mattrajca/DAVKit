@@ -35,13 +35,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	[_subQueue release];
-	[_requests release];
-	
-	[super dealloc];
-}
-
 - (BOOL)isConcurrent {
 	return YES;
 }

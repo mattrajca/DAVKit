@@ -6,7 +6,7 @@
 //
 
 @class DAVCredentials;
-@class DAVRequest;
+@class DAVBaseRequest;
 
 /* All paths are relative to the root of the server */
 
@@ -30,7 +30,7 @@
 */
 - (id)initWithRootURL:(NSURL *)url credentials:(DAVCredentials *)credentials;
 
-- (void)enqueueRequest:(NSOperation *)aRequest;
+- (void)enqueueRequest:(DAVBaseRequest *)aRequest;
 
 - (void)resetCredentialsCache;
 

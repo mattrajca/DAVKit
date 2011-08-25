@@ -24,8 +24,6 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 #define DEFAULT_TIMEOUT 60
 
-@synthesize rootURL = _rootURL, credentials = _credentials;
-@synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
 @synthesize path = _path;
 @synthesize delegate = _delegate;
 
@@ -42,7 +40,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 - (NSURL *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);
 	
-	return [_rootURL URLByAppendingPathComponent:aPath];
+	return [self.rootURL URLByAppendingPathComponent:aPath];
 }
 
 - (BOOL)isConcurrent {
@@ -127,15 +125,15 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-		if (_allowUntrustedCertificate)
+		if (self.allowUntrustedCertificate)
 			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
 				 forAuthenticationChallenge:challenge];
 		
 		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 	} else {
 		if ([challenge previousFailureCount] == 0) {
-			NSURLCredential *credential = [NSURLCredential credentialWithUser:_credentials.username
-																	 password:_credentials.password
+			NSURLCredential *credential = [NSURLCredential credentialWithUser:self.credentials.username
+																	 password:self.credentials.password
 																  persistence:NSURLCredentialPersistenceNone];
 			
 			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
@@ -176,8 +174,6 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 }
 
 - (void)dealloc {
-	[_rootURL release];
-	[_credentials release];
 	[_path release];
 	[_connection release];
 	[_data release];

@@ -5,13 +5,14 @@
 //  Copyright Matt Rajca 2010. All rights reserved.
 //
 
-@class DAVCredentials;
+#import "DAVBaseRequest.h"
+
 @protocol DAVRequestDelegate;
 
 /* codes returned are HTTP status codes */
 extern NSString *const DAVClientErrorDomain;
 
-@interface DAVRequest : NSOperation {
+@interface DAVRequest : DAVBaseRequest {
   @private
 	NSString *_path;
 	NSURLConnection *_connection;
@@ -19,10 +20,6 @@ extern NSString *const DAVClientErrorDomain;
 	BOOL _done;
 	BOOL _executing;
 }
-
-@property (retain) NSURL *rootURL;
-@property (retain) DAVCredentials *credentials;
-@property (assign) BOOL allowUntrustedCertificate;
 
 @property (readonly) NSString *path;
 

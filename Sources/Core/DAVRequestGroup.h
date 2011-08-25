@@ -5,9 +5,10 @@
 //  Copyright Matt Rajca 2011. All rights reserved.
 //
 
+#import "DAVBaseRequest.h"
 #import "DAVRequest.h"
 
-@interface DAVRequestGroup : NSOperation < DAVRequestDelegate > {
+@interface DAVRequestGroup : DAVBaseRequest < DAVRequestDelegate > {
   @private
 	NSOperationQueue *_subQueue;
 	NSMutableArray *_requests;

@@ -10,9 +10,10 @@
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		C9181BBC121DC31D0022E4AC /* DAVResponseItem.h in Headers */ = {isa = PBXBuildFile; fileRef = C9181BBA121DC31D0022E4AC /* DAVResponseItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9181BBD121DC31D0022E4AC /* DAVResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C9181BBB121DC31D0022E4AC /* DAVResponseItem.m */; };
-		C9A4E37E1406E12C004E4AEB /* DAVRequestGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A4E37C1406E12C004E4AEB /* DAVRequestGroup.h */; };
+		C9A4E37E1406E12C004E4AEB /* DAVRequestGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A4E37C1406E12C004E4AEB /* DAVRequestGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A4E37F1406E12C004E4AEB /* DAVRequestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A4E37D1406E12C004E4AEB /* DAVRequestGroup.m */; };
-		C9A4E3801406E12C004E4AEB /* DAVRequestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A4E37D1406E12C004E4AEB /* DAVRequestGroup.m */; };
+		C9A4E3A01406E9CF004E4AEB /* DAVBaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9A4E3A11406E9CF004E4AEB /* DAVBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */; };
 		C9FED59B121D989900DD1DFF /* DAVCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FED58F121D989900DD1DFF /* DAVCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9FED59C121D989900DD1DFF /* DAVCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FED590121D989900DD1DFF /* DAVCredentials.m */; };
 		C9FED59D121D989900DD1DFF /* DAVKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FED591121D989900DD1DFF /* DAVKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +63,8 @@
 		C939F7D313C67F6100925808 /* DAVTestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVTestSettings.h; path = Sources/Tests/DAVTestSettings.h; sourceTree = "<group>"; };
 		C9A4E37C1406E12C004E4AEB /* DAVRequestGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVRequestGroup.h; path = Sources/Core/DAVRequestGroup.h; sourceTree = "<group>"; };
 		C9A4E37D1406E12C004E4AEB /* DAVRequestGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVRequestGroup.m; path = Sources/Core/DAVRequestGroup.m; sourceTree = "<group>"; };
+		C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVBaseRequest.h; path = Sources/Core/DAVBaseRequest.h; sourceTree = "<group>"; };
+		C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVBaseRequest.m; path = Sources/Core/DAVBaseRequest.m; sourceTree = "<group>"; };
 		C9FED58F121D989900DD1DFF /* DAVCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVCredentials.h; path = Sources/Core/DAVCredentials.h; sourceTree = "<group>"; };
 		C9FED590121D989900DD1DFF /* DAVCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVCredentials.m; path = Sources/Core/DAVCredentials.m; sourceTree = "<group>"; };
 		C9FED591121D989900DD1DFF /* DAVKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVKit.h; path = Sources/Core/DAVKit.h; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 		C9FF779F121C6BDF001250C7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */,
+				C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */,
 				C9FED58F121D989900DD1DFF /* DAVCredentials.h */,
 				C9FED590121D989900DD1DFF /* DAVCredentials.m */,
 				C9FED594121D989900DD1DFF /* DAVRequest.h */,
@@ -276,17 +281,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A4E3A01406E9CF004E4AEB /* DAVBaseRequest.h in Headers */,
 				C9FED59B121D989900DD1DFF /* DAVCredentials.h in Headers */,
 				C9FED59D121D989900DD1DFF /* DAVKit.h in Headers */,
 				C9FED59E121D989900DD1DFF /* DAVListingParser.h in Headers */,
 				C9FED5A0121D989900DD1DFF /* DAVRequest.h in Headers */,
+				C9A4E37E1406E12C004E4AEB /* DAVRequestGroup.h in Headers */,
 				C9FED5A2121D989900DD1DFF /* DAVRequest+Private.h in Headers */,
 				C9FED5A3121D989900DD1DFF /* DAVRequests.h in Headers */,
 				C9FED5A5121D989900DD1DFF /* DAVSession.h in Headers */,
 				C9FED5AF121D98B800DD1DFF /* ISO8601DateFormatter.h in Headers */,
 				C9181BBC121DC31D0022E4AC /* DAVResponseItem.h in Headers */,
 				F94970ED132A093600713958 /* NSDateRFC1123.h in Headers */,
-				C9A4E37E1406E12C004E4AEB /* DAVRequestGroup.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +413,7 @@
 				C9181BBD121DC31D0022E4AC /* DAVResponseItem.m in Sources */,
 				F94970EE132A093600713958 /* NSDateRFC1123.m in Sources */,
 				C9A4E37F1406E12C004E4AEB /* DAVRequestGroup.m in Sources */,
+				C9A4E3A11406E9CF004E4AEB /* DAVBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +429,6 @@
 				C9FED5C6121D98D600DD1DFF /* EMoveTest.m in Sources */,
 				C9FED5C7121D98D600DD1DFF /* FListTest.m in Sources */,
 				C9FED5C8121D98D600DD1DFF /* GDeleteTest.m in Sources */,
-				C9A4E3801406E12C004E4AEB /* DAVRequestGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

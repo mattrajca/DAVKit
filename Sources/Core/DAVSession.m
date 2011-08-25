@@ -49,16 +49,12 @@
 	[_queue setMaxConcurrentOperationCount:aVal];
 }
 
-- (void)enqueueRequest:(NSOperation *)aRequest {
+- (void)enqueueRequest:(DAVBaseRequest *)aRequest {
 	NSParameterAssert(aRequest != nil);
 	
-	if ([aRequest isKindOfClass:[DAVRequest class]]) {
-		DAVRequest *davRequest = (DAVRequest *) aRequest;
-		
-		davRequest.credentials = _credentials;
-		davRequest.rootURL = _rootURL;
-		davRequest.allowUntrustedCertificate = _allowUntrustedCertificate;
-	}
+	aRequest.credentials = _credentials;
+	aRequest.rootURL = _rootURL;
+	aRequest.allowUntrustedCertificate = _allowUntrustedCertificate;
 	
 	[_queue addOperation:aRequest];
 }

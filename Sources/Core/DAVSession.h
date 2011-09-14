@@ -15,6 +15,7 @@
 	NSURL *_rootURL;
 	DAVCredentials *_credentials;
 	NSOperationQueue *_queue;
+    BOOL _allowUntrustedCertificate;
 }
 
 @property (readonly) NSURL *rootURL;

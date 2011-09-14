@@ -19,6 +19,7 @@ extern NSString *const DAVClientErrorDomain;
 	NSMutableData *_data;
 	BOOL _done;
 	BOOL _executing;
+    __weak id <DAVRequestDelegate> _delegate;
 }
 
 @property (readonly) NSString *path;

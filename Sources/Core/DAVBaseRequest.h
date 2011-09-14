@@ -7,8 +7,12 @@
 
 @class DAVCredentials;
 
-@interface DAVBaseRequest : NSOperation {
-	
+@interface DAVBaseRequest : NSOperation
+{
+  @private
+    NSURL           *_rootURL;
+    DAVCredentials  *_credentials;
+    BOOL            _allowUntrustedCertificate;
 }
 
 @property (retain) NSURL *rootURL;

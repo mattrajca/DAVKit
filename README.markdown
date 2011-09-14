@@ -15,7 +15,7 @@ WebDAV requests are sent using the `DAVSession` class. Initialize `DAVSession` w
 	
 	NSString *root = @"http://idisk.me.com/steve"; // don't include the trailing / (slash)
 	
-	DAVSession *session = [[DAVSession alloc] initWithRootURL:root
+	DAVSession *session = [[DAVSession alloc] initWithRootURL:[NSURL URLWithString:root]
 												  credentials:credentials];
 
 

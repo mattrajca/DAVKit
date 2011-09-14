@@ -105,9 +105,10 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	if (code >= 400) {
 		[_connection cancel];
 		
+        // TODO: Formalize inclusion of response
 		NSError *error = [NSError errorWithDomain:DAVClientErrorDomain
 											 code:code
-										 userInfo:nil];
+										 userInfo:[NSDictionary dictionaryWithObject:response forKey:@"response"]];
 		
 		[self _didFail:error];
 	}

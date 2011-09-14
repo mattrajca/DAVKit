@@ -7,7 +7,6 @@
 
 #import "DAVRequest.h"
 
-#import "DAVCredentials.h"
 #import "DAVSession.h"
 
 @interface DAVRequest ()
@@ -132,11 +131,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 	} else {
 		if ([challenge previousFailureCount] == 0) {
-			NSURLCredential *credential = [NSURLCredential credentialWithUser:self.credentials.username
-																	 password:self.credentials.password
-																  persistence:NSURLCredentialPersistenceNone];
-			
-			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+			[[challenge sender] useCredential:self.credentials forAuthenticationChallenge:challenge];
 		} else {
 			// Wrong login/password
 			[[challenge sender] cancelAuthenticationChallenge:challenge];

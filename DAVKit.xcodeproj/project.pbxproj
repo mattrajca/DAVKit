@@ -14,8 +14,6 @@
 		C9A4E37F1406E12C004E4AEB /* DAVRequestGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A4E37D1406E12C004E4AEB /* DAVRequestGroup.m */; };
 		C9A4E3A01406E9CF004E4AEB /* DAVBaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A4E3A11406E9CF004E4AEB /* DAVBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */; };
-		C9FED59B121D989900DD1DFF /* DAVCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FED58F121D989900DD1DFF /* DAVCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9FED59C121D989900DD1DFF /* DAVCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FED590121D989900DD1DFF /* DAVCredentials.m */; };
 		C9FED59D121D989900DD1DFF /* DAVKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FED591121D989900DD1DFF /* DAVKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9FED59E121D989900DD1DFF /* DAVListingParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FED592121D989900DD1DFF /* DAVListingParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9FED59F121D989900DD1DFF /* DAVListingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FED593121D989900DD1DFF /* DAVListingParser.m */; };
@@ -65,8 +63,6 @@
 		C9A4E37D1406E12C004E4AEB /* DAVRequestGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVRequestGroup.m; path = Sources/Core/DAVRequestGroup.m; sourceTree = "<group>"; };
 		C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVBaseRequest.h; path = Sources/Core/DAVBaseRequest.h; sourceTree = "<group>"; };
 		C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVBaseRequest.m; path = Sources/Core/DAVBaseRequest.m; sourceTree = "<group>"; };
-		C9FED58F121D989900DD1DFF /* DAVCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVCredentials.h; path = Sources/Core/DAVCredentials.h; sourceTree = "<group>"; };
-		C9FED590121D989900DD1DFF /* DAVCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVCredentials.m; path = Sources/Core/DAVCredentials.m; sourceTree = "<group>"; };
 		C9FED591121D989900DD1DFF /* DAVKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVKit.h; path = Sources/Core/DAVKit.h; sourceTree = "<group>"; };
 		C9FED592121D989900DD1DFF /* DAVListingParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVListingParser.h; path = Sources/Core/DAVListingParser.h; sourceTree = "<group>"; };
 		C9FED593121D989900DD1DFF /* DAVListingParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVListingParser.m; path = Sources/Core/DAVListingParser.m; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 			children = (
 				C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */,
 				C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */,
-				C9FED58F121D989900DD1DFF /* DAVCredentials.h */,
-				C9FED590121D989900DD1DFF /* DAVCredentials.m */,
 				C9FED594121D989900DD1DFF /* DAVRequest.h */,
 				C9FED595121D989900DD1DFF /* DAVRequest.m */,
 				C9A4E37C1406E12C004E4AEB /* DAVRequestGroup.h */,
@@ -282,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A4E3A01406E9CF004E4AEB /* DAVBaseRequest.h in Headers */,
-				C9FED59B121D989900DD1DFF /* DAVCredentials.h in Headers */,
 				C9FED59D121D989900DD1DFF /* DAVKit.h in Headers */,
 				C9FED59E121D989900DD1DFF /* DAVListingParser.h in Headers */,
 				C9FED5A0121D989900DD1DFF /* DAVRequest.h in Headers */,
@@ -404,7 +397,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9FED59C121D989900DD1DFF /* DAVCredentials.m in Sources */,
 				C9FED59F121D989900DD1DFF /* DAVListingParser.m in Sources */,
 				C9FED5A1121D989900DD1DFF /* DAVRequest.m in Sources */,
 				C9FED5A4121D989900DD1DFF /* DAVRequests.m in Sources */,

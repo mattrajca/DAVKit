@@ -14,8 +14,9 @@
 - (void)setUp {
 	_done = NO;
 	
-	DAVCredentials *credentials = [DAVCredentials credentialsWithUsername:USERNAME
-																 password:PASSWORD];
+	NSURLCredential *credential = [NSURLCredential credentialWithUser:USERNAME
+                                                             password:PASSWORD
+                                                          persistence:NSURLCredentialPersistenceNone];
 	
 	STAssertNotNil(credentials, @"Couldn't create credentials");
 	STAssertTrue([USERNAME isEqualToString:credentials.username], @"Couldn't set username");

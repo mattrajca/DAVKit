@@ -5,7 +5,6 @@
 //  Copyright Matt Rajca 2010. All rights reserved.
 //
 
-@class DAVCredentials;
 @class DAVBaseRequest;
 
 /* All paths are relative to the root of the server */
@@ -13,13 +12,13 @@
 @interface DAVSession : NSObject {
   @private
 	NSURL *_rootURL;
-	DAVCredentials *_credentials;
+	NSURLCredential *_credentials;
 	NSOperationQueue *_queue;
     BOOL _allowUntrustedCertificate;
 }
 
 @property (readonly) NSURL *rootURL;
-@property (readonly) DAVCredentials *credentials;
+@property (readonly) NSURLCredential *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
 
 @property (readonly) NSUInteger requestCount; /* KVO compliant */
@@ -30,7 +29,7 @@
  **NOTE: omit the trailing slash (/)**
  Example: http://idisk.me.com/steve
 */
-- (id)initWithRootURL:(NSURL *)url credentials:(DAVCredentials *)credentials;
+- (id)initWithRootURL:(NSURL *)url credentials:(NSURLCredential *)credentials;
 
 - (void)enqueueRequest:(DAVBaseRequest *)aRequest;
 

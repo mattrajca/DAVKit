@@ -113,6 +113,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	}
 }
 
+#if defined MAC_OS_X_VERSION_MAX_ALLOWED && MAC_OS_X_VERSION_10_6 >= MAC_OS_X_VERSION_MAX_ALLOWED
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
 	BOOL result = [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodDefault] ||
 	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPBasic] ||
@@ -121,15 +122,21 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	
 	return result;
 }
+#endif
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+#if defined MAC_OS_X_VERSION_MAX_ALLOWED && MAC_OS_X_VERSION_10_6 >= MAC_OS_X_VERSION_MAX_ALLOWED
+	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
 		if (self.allowUntrustedCertificate)
 			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
 				 forAuthenticationChallenge:challenge];
 		
 		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-	} else {
+	}
+    else
+#endif
+    {
 		if ([challenge previousFailureCount] == 0) {
 			[[challenge sender] useCredential:self.credentials forAuthenticationChallenge:challenge];
 		} else {

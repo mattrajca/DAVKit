@@ -13,6 +13,7 @@
     DAVSession  *_session;
 }
 
-@property(nonatomic, retain) DAVSession *session;   /* only the session should set this */
+- (id)initWithSession:(DAVSession *)session; /* designated intializer */
+@property(retain, readonly) DAVSession *session;
 
 @end

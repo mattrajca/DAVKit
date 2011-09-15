@@ -75,8 +75,6 @@
 - (void)processNextRequest {
 	if ([_requests count]) {
 		DAVRequest *request = [_requests objectAtIndex:0];
-		request.session = self.session;
-		request.delegate = self;
 		
 		[_subQueue addOperation:request];
 	}

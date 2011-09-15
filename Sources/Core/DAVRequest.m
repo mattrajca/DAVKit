@@ -24,14 +24,15 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 #define DEFAULT_TIMEOUT 60
 
 @synthesize path = _path;
-@synthesize delegate = _delegate;
 
-- (id)initWithPath:(NSString *)aPath {
+- (id)initWithPath:(NSString *)aPath session:(DAVSession *)session delegate:(id <DAVRequestDelegate>)delegate;
+{
 	NSParameterAssert(aPath != nil);
 	
-	self = [super init];
+	self = [self initWithSession:session];
 	if (self) {
 		_path = [aPath copy];
+        _delegate = [delegate retain];  // retained till finish running/cancelled
 	}
 	return self;
 }
@@ -52,6 +53,13 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 - (BOOL)isFinished {
 	return _done;
+}
+
+- (void)cancel;
+{
+    [super cancel];
+    [_connection cancel];
+    [_delegate release]; _delegate = nil;
 }
 
 - (void)start {
@@ -147,7 +155,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 #endif
     {
 		if ([challenge previousFailureCount] == 0) {
-			[[challenge sender] useCredential:self.session.credentials forAuthenticationChallenge:challenge];
+			[[challenge sender] useCredential:[challenge proposedCredential] forAuthenticationChallenge:challenge];
 		} else {
 			// Wrong login/password
 			[[challenge sender] cancelAuthenticationChallenge:challenge];
@@ -181,6 +189,8 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	
 	[self didChangeValueForKey:@"isExecuting"];
 	[self didChangeValueForKey:@"isFinished"];
+    
+    [_delegate release]; _delegate = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

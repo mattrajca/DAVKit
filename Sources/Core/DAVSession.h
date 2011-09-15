@@ -14,19 +14,13 @@
 @interface DAVSession : NSObject {
   @private
 	NSURL *_rootURL;
-	NSURLCredential *_credentials;
-	NSOperationQueue *_queue;
-    BOOL _allowUntrustedCertificate;
+	BOOL _allowUntrustedCertificate;
     
     id <DAVSessionDelegate> _delegate;
 }
 
 @property (readonly) NSURL *rootURL;
-@property (readonly) NSURLCredential *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
-
-@property (readonly) NSUInteger requestCount; /* KVO compliant */
-@property (assign) NSInteger maxConcurrentRequests; /* default is 2 */
 
 /*
  The root URL should include a scheme and host, followed by any root paths
@@ -34,8 +28,6 @@
  Example: http://idisk.me.com/steve
 */
 - (id)initWithRootURL:(NSURL *)url delegate:(id <DAVSessionDelegate>)delegate;
-
-- (void)enqueueRequest:(DAVBaseRequest *)aRequest;
 
 - (void)resetCredentialsCache;
 

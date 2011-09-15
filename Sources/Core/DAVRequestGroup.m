@@ -75,9 +75,7 @@
 - (void)processNextRequest {
 	if ([_requests count]) {
 		DAVRequest *request = [_requests objectAtIndex:0];
-		request.credentials = self.credentials;
-		request.rootURL = self.rootURL;
-		request.allowUntrustedCertificate = self.allowUntrustedCertificate;
+		request.session = self.session;
 		request.delegate = self;
 		
 		[_subQueue addOperation:request];

@@ -9,12 +9,10 @@
 
 @implementation DAVBaseRequest
 
-@synthesize rootURL = _rootURL, credentials = _credentials;
-@synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
+@synthesize session = _session;
 
 - (void)dealloc {
-    [_rootURL release];
-	[_credentials release];
+    [_session release];
 	
 	[super dealloc];
 }

@@ -6,8 +6,10 @@
 //
 
 @class DAVBaseRequest;
+@protocol DAVSessionDelegate;
 
 /* All paths are relative to the root of the server */
+
 
 @interface DAVSession : NSObject {
   @private
@@ -15,6 +17,8 @@
 	NSURLCredential *_credentials;
 	NSOperationQueue *_queue;
     BOOL _allowUntrustedCertificate;
+    
+    id <DAVSessionDelegate> _delegate;
 }
 
 @property (readonly) NSURL *rootURL;
@@ -29,10 +33,17 @@
  **NOTE: omit the trailing slash (/)**
  Example: http://idisk.me.com/steve
 */
-- (id)initWithRootURL:(NSURL *)url credentials:(NSURLCredential *)credentials;
+- (id)initWithRootURL:(NSURL *)url delegate:(id <DAVSessionDelegate>)delegate;
 
 - (void)enqueueRequest:(DAVBaseRequest *)aRequest;
 
 - (void)resetCredentialsCache;
 
+@end
+
+
+@protocol DAVSessionDelegate <NSObject>
+@optional
+- (void)webDAVSession:(DAVSession *)session didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+- (void)webDAVSession:(DAVSession *)session didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
 @end

@@ -39,7 +39,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 - (NSURL *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);
 	
-	return [self.rootURL URLByAppendingPathComponent:aPath];
+	return [self.session.rootURL URLByAppendingPathComponent:aPath];
 }
 
 - (BOOL)isConcurrent {
@@ -125,11 +125,19 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 }
 #endif
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    id <DAVSessionDelegate> delegate = [self.session valueForKey:@"delegate"];
+    if ([delegate respondsToSelector:@selector(webDAVSession:didReceiveAuthenticationChallenge:)])
+    {
+        [delegate webDAVSession:self.session didReceiveAuthenticationChallenge:challenge];
+        return;
+    }
+    
 #if defined MAC_OS_X_VERSION_MAX_ALLOWED && MAC_OS_X_VERSION_10_6 >= MAC_OS_X_VERSION_MAX_ALLOWED
 	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
     {
-		if (self.allowUntrustedCertificate)
+		if (self.session.allowUntrustedCertificate)
 			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
 				 forAuthenticationChallenge:challenge];
 		
@@ -139,12 +147,21 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 #endif
     {
 		if ([challenge previousFailureCount] == 0) {
-			[[challenge sender] useCredential:self.credentials forAuthenticationChallenge:challenge];
+			[[challenge sender] useCredential:self.session.credentials forAuthenticationChallenge:challenge];
 		} else {
 			// Wrong login/password
 			[[challenge sender] cancelAuthenticationChallenge:challenge];
 		}
 	}
+}
+
+- (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+{
+    id <DAVSessionDelegate> delegate = [self.session valueForKey:@"delegate"];
+    if ([delegate respondsToSelector:@selector(webDAVSession:didCancelAuthenticationChallenge:)])
+    {
+        [delegate webDAVSession:self.session didCancelAuthenticationChallenge:challenge];
+    }
 }
 
 - (void)_didFail:(NSError *)error {

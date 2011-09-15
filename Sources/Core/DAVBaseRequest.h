@@ -5,17 +5,14 @@
 //  Copyright Matt Rajca 2011. All rights reserved.
 //
 
+@class DAVSession;
 
 @interface DAVBaseRequest : NSOperation
 {
   @private
-    NSURL           *_rootURL;
-    NSURLCredential *_credentials;
-    BOOL            _allowUntrustedCertificate;
+    DAVSession  *_session;
 }
 
-@property (retain) NSURL *rootURL;
-@property (retain) NSURLCredential *credentials;
-@property (assign) BOOL allowUntrustedCertificate;
+@property(nonatomic, retain) DAVSession *session;   /* only the session should set this */
 
 @end

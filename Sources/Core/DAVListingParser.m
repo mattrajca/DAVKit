@@ -103,7 +103,7 @@
 		_inResponseType = NO;
 	}
 	else if ([elementName isEqualToString:@"collection"] && _inResponseType) {
-		_currentItem.resourceType = DAVResourceTypeCollection;
+		_currentItem.fileAttributes = [NSDictionary dictionaryWithObject:NSFileTypeDirectory forKey:NSFileType];
 	}
 	else if ([elementName isEqualToString:@"response"]) {
 		[_items addObject:_currentItem];

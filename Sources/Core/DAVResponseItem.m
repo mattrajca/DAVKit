@@ -10,21 +10,14 @@
 @implementation DAVResponseItem
 
 @synthesize href, modificationDate, contentLength, contentType;
-@synthesize creationDate, resourceType;
-
-- (id)init {
-	self = [super init];
-	if (self) {
-		resourceType = DAVResourceTypeUnspecified;
-	}
-	return self;
-}
+@synthesize creationDate;
+@synthesize fileAttributes = attributes;
 
 - (NSString *)description {
 	return [NSString stringWithFormat:@"href = %@; modificationDate = %@; contentLength = %lld; "
-									  @"contentType = %@; creationDate = %@; resourceType = %d;",
+									  @"contentType = %@; creationDate = %@; attributes = %@;",
 									  href, modificationDate, contentLength, contentType,
-									  creationDate, resourceType];
+									  creationDate, attributes];
 }
 
 - (void)dealloc {

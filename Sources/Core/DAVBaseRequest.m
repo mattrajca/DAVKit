@@ -9,12 +9,22 @@
 
 @implementation DAVBaseRequest
 
-@synthesize rootURL = _rootURL, credentials = _credentials;
-@synthesize allowUntrustedCertificate = _allowUntrustedCertificate;
+- (id)initWithSession:(DAVSession *)session;
+{
+    NSParameterAssert(session);
+    if (self = [super init])
+    {
+        _session = [session retain];
+    }
+    return self;
+}
+
+- (id)init; { return [self initWithSession:nil]; }
+
+@synthesize session = _session;
 
 - (void)dealloc {
-    [_rootURL release];
-	[_credentials release];
+    [_session release];
 	
 	[super dealloc];
 }

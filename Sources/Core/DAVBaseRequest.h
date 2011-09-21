@@ -5,14 +5,15 @@
 //  Copyright Matt Rajca 2011. All rights reserved.
 //
 
-@class DAVCredentials;
+@class DAVSession;
 
-@interface DAVBaseRequest : NSOperation {
-	
+@interface DAVBaseRequest : NSOperation
+{
+  @private
+    DAVSession  *_session;
 }
 
-@property (retain) NSURL *rootURL;
-@property (retain) DAVCredentials *credentials;
-@property (assign) BOOL allowUntrustedCertificate;
+- (id)initWithSession:(DAVSession *)session; /* designated intializer */
+@property(retain, readonly) DAVSession *session;
 
 @end

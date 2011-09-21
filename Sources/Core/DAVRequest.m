@@ -7,7 +7,6 @@
 
 #import "DAVRequest.h"
 
-#import "DAVCredentials.h"
 #import "DAVSession.h"
 
 @interface DAVRequest ()
@@ -25,14 +24,15 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 #define DEFAULT_TIMEOUT 60
 
 @synthesize path = _path;
-@synthesize delegate = _delegate;
 
-- (id)initWithPath:(NSString *)aPath {
+- (id)initWithPath:(NSString *)aPath session:(DAVSession *)session delegate:(id <DAVRequestDelegate>)delegate;
+{
 	NSParameterAssert(aPath != nil);
 	
-	self = [super init];
+	self = [self initWithSession:session];
 	if (self) {
 		_path = [aPath copy];
+        _delegate = [delegate retain];  // retained till finish running/cancelled
 	}
 	return self;
 }
@@ -40,7 +40,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 - (NSURL *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);
 	
-	return [self.rootURL URLByAppendingPathComponent:aPath];
+	return [self.session.rootURL URLByAppendingPathComponent:aPath];
 }
 
 - (BOOL)isConcurrent {
@@ -53,6 +53,13 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 - (BOOL)isFinished {
 	return _done;
+}
+
+- (void)cancel;
+{
+    [super cancel];
+    [_connection cancel];
+    [_delegate release]; _delegate = nil;
 }
 
 - (void)start {
@@ -106,14 +113,16 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	if (code >= 400) {
 		[_connection cancel];
 		
+        // TODO: Formalize inclusion of response
 		NSError *error = [NSError errorWithDomain:DAVClientErrorDomain
 											 code:code
-										 userInfo:nil];
+										 userInfo:[NSDictionary dictionaryWithObject:response forKey:@"response"]];
 		
 		[self _didFail:error];
 	}
 }
 
+#if defined MAC_OS_X_VERSION_MAX_ALLOWED && MAC_OS_X_VERSION_10_6 >= MAC_OS_X_VERSION_MAX_ALLOWED
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
 	BOOL result = [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodDefault] ||
 	[protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodHTTPBasic] ||
@@ -122,26 +131,45 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	
 	return result;
 }
+#endif
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-		if (self.allowUntrustedCertificate)
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    id <DAVSessionDelegate> delegate = [self.session valueForKey:@"delegate"];
+    if ([delegate respondsToSelector:@selector(webDAVSession:didReceiveAuthenticationChallenge:)])
+    {
+        [delegate webDAVSession:self.session didReceiveAuthenticationChallenge:challenge];
+        return;
+    }
+    
+#if defined MAC_OS_X_VERSION_MAX_ALLOWED && MAC_OS_X_VERSION_10_6 >= MAC_OS_X_VERSION_MAX_ALLOWED
+	if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
+		if (self.session.allowUntrustedCertificate)
 			[challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
 				 forAuthenticationChallenge:challenge];
 		
 		[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-	} else {
+	}
+    else
+#endif
+    {
 		if ([challenge previousFailureCount] == 0) {
-			NSURLCredential *credential = [NSURLCredential credentialWithUser:self.credentials.username
-																	 password:self.credentials.password
-																  persistence:NSURLCredentialPersistenceNone];
-			
-			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+			[[challenge sender] useCredential:[challenge proposedCredential] forAuthenticationChallenge:challenge];
 		} else {
 			// Wrong login/password
 			[[challenge sender] cancelAuthenticationChallenge:challenge];
 		}
 	}
+}
+
+- (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+{
+    id <DAVSessionDelegate> delegate = [self.session valueForKey:@"delegate"];
+    if ([delegate respondsToSelector:@selector(webDAVSession:didCancelAuthenticationChallenge:)])
+    {
+        [delegate webDAVSession:self.session didCancelAuthenticationChallenge:challenge];
+    }
 }
 
 - (void)_didFail:(NSError *)error {
@@ -161,6 +189,8 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	
 	[self didChangeValueForKey:@"isExecuting"];
 	[self didChangeValueForKey:@"isFinished"];
+    
+    [_delegate release]; _delegate = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

@@ -71,8 +71,9 @@
 
 @synthesize depth = _depth;
 
-- (id)initWithPath:(NSString *)aPath {
-	self = [super initWithPath:aPath];
+- (id)initWithPath:(NSString *)aPath session:(DAVSession *)session delegate:(id <DAVRequestDelegate>)delegate;
+{
+	self = [super initWithPath:aPath session:session delegate:delegate];
 	if (self) {
 		_depth = 1;
 	}

@@ -5,7 +5,6 @@
 //  Copyright Matt Rajca 2010. All rights reserved.
 //
 
-#import <DAVKit/DAVCredentials.h>
 #import <DAVKit/DAVRequest.h>
 #import <DAVKit/DAVRequestGroup.h>
 #import <DAVKit/DAVRequests.h>

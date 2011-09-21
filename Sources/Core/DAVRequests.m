@@ -132,7 +132,15 @@
 
 @implementation DAVPutRequest
 
+- (id)initWithPath:(NSString *)path {
+	if ((self = [super initWithPath:path])) {
+		self.dataMIMEType = @"application/octet-stream";
+	}
+	return self;
+}
+
 @synthesize data = _pdata;
+@synthesize dataMIMEType = _MIMEType;
 
 - (NSURLRequest *)request {
 	NSParameterAssert(_pdata != nil);
@@ -140,9 +148,9 @@
 	NSString *len = [NSString stringWithFormat:@"%ld", [_pdata length]];
 	
 	NSMutableURLRequest *req = [self newRequestWithPath:self.path method:@"PUT"];
-	[req setValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
+	[req setValue:[self dataMIMEType] forHTTPHeaderField:@"Content-Type"];
 	[req setValue:len forHTTPHeaderField:@"Content-Length"];
-    [req setHTTPBody:_pdata];
+	[req setHTTPBody:_pdata];
 	
 	return req;
 }

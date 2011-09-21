@@ -42,9 +42,11 @@
 @interface DAVPutRequest : DAVRequest {
   @private
 	NSData *_pdata;
+	NSString *_MIMEType;
 }
 
 // Pass - [NSData dataWithContentsOfFile:] to upload a local file
 @property (strong) NSData *data;
+@property (copy) NSString *dataMIMEType; // defaults to application/octet-stream
 
 @end

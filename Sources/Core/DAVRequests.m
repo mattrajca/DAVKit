@@ -140,9 +140,9 @@
 
 @implementation DAVPutRequest
 
-- (id)initWithPath:(NSString *)path;
+- (id)initWithSession:(DAVSession *)session;
 {
-    if (self = [super initWithPath:path])
+    if (self = [super initWithSession:session])
     {
         _MIMEType = @"application/octet-stream";
     }

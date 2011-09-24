@@ -39,11 +39,22 @@
 @interface DAVMoveRequest : DAVCopyRequest { }
 @end
 
+
+#pragma mark -
+
+
+@protocol DAVPutRequestDelegate <DAVRequestDelegate>
+@optional
+- (void)webDAVRequest:(DAVRequest *)request didSendDataOfLength:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
+@end
+
 @interface DAVPutRequest : DAVRequest {
   @private
 	NSData      *_pdata;
     NSString    *_MIMEType;
 }
+
+@property(nonatomic, assign, readonly) id <DAVPutRequestDelegate> delegate;
 
 // Pass - [NSData dataWithContentsOfFile:] to upload a local file
 @property (retain) NSData *data;

@@ -23,8 +23,6 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 
 #define DEFAULT_TIMEOUT 60
 
-@synthesize path = _path;
-
 - (id)initWithPath:(NSString *)aPath session:(DAVSession *)session delegate:(id <DAVRequestDelegate>)delegate;
 {
 	NSParameterAssert(aPath != nil);
@@ -36,6 +34,9 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	}
 	return self;
 }
+
+@synthesize path = _path;
+@synthesize delegate = _delegate;
 
 - (NSURL *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);

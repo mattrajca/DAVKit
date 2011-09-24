@@ -25,6 +25,7 @@ extern NSString *const DAVClientErrorDomain;
 - (id)initWithPath:(NSString *)aPath session:(DAVSession *)session delegate:(id <DAVRequestDelegate>)delegate;
 
 @property(readonly) NSString *path;
+@property(nonatomic, assign, readonly) id <DAVRequestDelegate> delegate;
 
 - (NSURL *)concatenatedURLWithPath:(NSString *)aPath;
 

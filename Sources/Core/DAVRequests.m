@@ -149,6 +149,8 @@
     return self;
 }
 
+@dynamic delegate;
+
 @synthesize data = _pdata;
 @synthesize dataMIMEType = _MIMEType;
 
@@ -171,6 +173,14 @@
     [_MIMEType release];
     
 	[super dealloc];
+}
+
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    if ([[self delegate] respondsToSelector:@selector(webDAVRequest:didSendDataOfLength:totalBytesWritten:totalBytesExpectedToWrite:)])
+    {
+        [[self delegate] webDAVRequest:self didSendDataOfLength:bytesWritten totalBytesWritten:totalBytesWritten totalBytesExpectedToWrite:totalBytesExpectedToWrite];
+    }
 }
 
 @end

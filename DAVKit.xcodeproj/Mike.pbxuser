@@ -1,0 +1,177 @@
+// !$*UTF8*$!
+{
+	0867D690FE84028FC02AAC07 /* Project object */ = {
+		activeArchitecturePreference = i386;
+		activeBuildConfigurationName = Debug;
+		activeTarget = 8DC2EF4F0486A6940098B216 /* DAVKit */;
+		breakpoints = (
+		);
+		codeSenseManager = 2785B4371420E9D800CE3888 /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					356,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					316,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 338980541;
+			PBXWorkspaceStateSaveDate = 338980541;
+		};
+		sourceControlManager = 2785B4361420E9D800CE3888 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	2785B4361420E9D800CE3888 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	2785B4371420E9D800CE3888 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8DC2EF4F0486A6940098B216 /* DAVKit */ = {
+		activeExec = 0;
+	};
+	C9A4E37C1406E12C004E4AEB /* DAVRequestGroup.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {921, 761}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 455}";
+			sepNavWindowFrame = "{{445, 4}, {980, 874}}";
+		};
+	};
+	C9A4E37D1406E12C004E4AEB /* DAVRequestGroup.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {758, 1404}}";
+			sepNavSelRange = "{1293, 0}";
+			sepNavVisRange = "{1152, 720}";
+		};
+	};
+	C9A4E39E1406E9CF004E4AEB /* DAVBaseRequest.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {758, 414}}";
+			sepNavSelRange = "{294, 0}";
+			sepNavVisRange = "{0, 294}";
+			sepNavWindowFrame = "{{597, 130}, {748, 648}}";
+		};
+	};
+	C9A4E39F1406E9CF004E4AEB /* DAVBaseRequest.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {921, 761}}";
+			sepNavSelRange = "{185, 0}";
+			sepNavVisRange = "{0, 257}";
+			sepNavWindowFrame = "{{454, 4}, {980, 874}}";
+		};
+	};
+	C9FED592121D989900DD1DFF /* DAVListingParser.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {921, 661}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 606}";
+			sepNavWindowFrame = "{{38, 78}, {980, 774}}";
+		};
+	};
+	C9FED593121D989900DD1DFF /* DAVListingParser.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {921, 1677}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{1679, 1536}";
+			sepNavWindowFrame = "{{15, 99}, {980, 774}}";
+		};
+	};
+	C9FED594121D989900DD1DFF /* DAVRequest.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {921, 702}}";
+			sepNavSelRange = "{629, 0}";
+			sepNavVisRange = "{20, 1205}";
+			sepNavWindowFrame = "{{84, 36}, {980, 774}}";
+		};
+	};
+	C9FED595121D989900DD1DFF /* DAVRequest.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {857, 3380}}";
+			sepNavSelRange = "{6288, 0}";
+			sepNavVisRange = "{219, 1129}";
+			sepNavWindowFrame = "{{183, 4}, {916, 874}}";
+		};
+	};
+	C9FED597121D989900DD1DFF /* DAVRequests.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 858}}";
+			sepNavSelRange = "{1319, 0}";
+			sepNavVisRange = "{91, 1228}";
+			sepNavWindowFrame = "{{660, 4}, {750, 874}}";
+		};
+	};
+	C9FED598121D989900DD1DFF /* DAVRequests.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {921, 2717}}";
+			sepNavSelRange = "{3968, 0}";
+			sepNavVisRange = "{0, 1097}";
+			sepNavWindowFrame = "{{3, 4}, {980, 874}}";
+		};
+	};
+	C9FED599121D989900DD1DFF /* DAVSession.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {857, 694}}";
+			sepNavSelRange = "{1309, 0}";
+			sepNavVisRange = "{0, 1309}";
+			sepNavWindowFrame = "{{6, 71}, {916, 807}}";
+		};
+	};
+	C9FED59A121D989900DD1DFF /* DAVSession.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {720, 1339}}";
+			sepNavSelRange = "{2855, 0}";
+			sepNavVisRange = "{1596, 672}";
+			sepNavWindowFrame = "{{209, 4}, {980, 874}}";
+		};
+	};
+	C9FF77EB121C6F51001250C7 /* Tests */ = {
+		activeExec = 0;
+	};
+}

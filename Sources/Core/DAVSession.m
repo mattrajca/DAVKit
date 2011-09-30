@@ -106,8 +106,6 @@
 
 - (void)dealloc {
 	[_queue removeObserver:self forKeyPath:@"operationCount"];
-	
-	[super dealloc];
 }
 
 @end

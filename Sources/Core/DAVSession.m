@@ -101,6 +101,8 @@
 }
 
 - (void)dealloc {
+	[_queue removeObserver:self forKeyPath:@"operationCount"];
+	
 	[_queue release];
 	[_rootURL release];
 	[_credentials release];

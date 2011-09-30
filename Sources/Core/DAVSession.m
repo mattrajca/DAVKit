@@ -75,6 +75,10 @@
 	[_queue addOperation:aRequest];
 }
 
+- (void)cancelRequests {
+	[_queue cancelAllOperations];
+}
+
 - (void)resetCredentialsCache {
 	// reset the credentials cache...
 	NSDictionary *credentialsDict = [[NSURLCredentialStorage sharedCredentialStorage] allCredentials];

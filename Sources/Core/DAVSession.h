@@ -32,6 +32,7 @@
 - (id)initWithRootURL:(NSURL *)url credentials:(DAVCredentials *)credentials;
 
 - (void)enqueueRequest:(DAVBaseRequest *)aRequest;
+- (void)cancelRequests;
 
 - (void)resetCredentialsCache;
 

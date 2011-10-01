@@ -55,6 +55,22 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	return _done;
 }
 
+- (BOOL)isCancelled {
+	return _cancelled;
+}
+
+- (void)cancel {
+	[self willChangeValueForKey:@"isCancelled"];
+	
+	[_connection cancel];
+	_cancelled = YES;
+	
+	NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:nil];
+	[self _didFail:error];
+	
+	[self didChangeValueForKey:@"isCancelled"];
+}
+
 - (void)start {
 	if (![NSThread isMainThread]) {
 		[self performSelectorOnMainThread:@selector(start) 

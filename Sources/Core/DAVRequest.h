@@ -17,7 +17,7 @@ extern NSString *const DAVClientErrorDomain;
 	NSString *_path;
 	NSURLConnection *_connection;
 	NSMutableData *_data;
-	BOOL _done;
+	BOOL _done, _cancelled;
 	BOOL _executing;
 }
 

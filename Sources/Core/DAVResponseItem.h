@@ -27,4 +27,6 @@ typedef enum {
 @property (retain) NSDate *creationDate;
 @property (assign) DAVResourceType resourceType;
 
+- (NSComparisonResult)compare:(DAVResponseItem *)item;
+
 @end

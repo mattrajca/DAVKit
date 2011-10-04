@@ -27,6 +27,10 @@
 									  creationDate, resourceType];
 }
 
+- (NSComparisonResult)compare:(DAVResponseItem *)item {
+	return [self.href compare:item.href];
+}
+
 - (void)dealloc {
 	[href release];
 	[modificationDate release];

@@ -28,11 +28,9 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 @synthesize delegate = _delegate;
 
 - (id)initWithPath:(NSString *)aPath {
-	NSParameterAssert(aPath != nil);
-	
 	self = [super init];
 	if (self) {
-		_path = [aPath copy];
+		_path = [aPath == nil ? @"" : aPath copy];
 	}
 	return self;
 }

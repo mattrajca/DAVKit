@@ -41,7 +41,15 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 - (NSURL *)concatenatedURLWithPath:(NSString *)aPath {
 	NSParameterAssert(aPath != nil);
 	
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
 	return [self.session.rootURL URLByAppendingPathComponent:aPath];
+#else
+    CFURLRef result = CFURLCreateCopyAppendingPathComponent(NULL,
+                                                             (CFURLRef)[self.session.rootURL absoluteURL],
+                                                             (CFStringRef)aPath,
+                                                             NO);
+    return [NSMakeCollectable(result) autorelease];
+#endif
 }
 
 - (BOOL)isConcurrent {

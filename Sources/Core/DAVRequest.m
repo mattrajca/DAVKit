@@ -115,9 +115,13 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	[self _didFail:error];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
 	NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
 	NSInteger code = [resp statusCode];
+    
+    // Report to transcript
+    [[self session] appendFormatToReceivedTranscript:@"%i %@", code, [[resp class] localizedStringForStatusCode:code]];
 	
 	if (code >= 400) {
 		[_connection cancel];

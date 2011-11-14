@@ -55,6 +55,32 @@
 	}
 }
 
+- (void)appendFormatToReceivedTranscript:(NSString *)format, ...;
+{
+    va_list argList;
+	va_start(argList, format);
+	[self appendFormatToTranscript:format arguments:argList sent:NO];
+	va_end(argList);
+}
+
+- (void)appendFormatToSentTranscript:(NSString *)format, ...;
+{
+    va_list argList;
+	va_start(argList, format);
+	[self appendFormatToTranscript:format arguments:argList sent:YES];
+	va_end(argList);
+}
+
+- (void)appendFormatToTranscript:(NSString *)format arguments:(va_list)argList sent:(BOOL)sent;
+{
+    if ([_delegate respondsToSelector:@selector(webDAVSession:appendStringToTranscript:sent:)])
+    {
+        NSString *string = [[NSString alloc] initWithFormat:format arguments:argList];
+        [_delegate webDAVSession:self appendStringToTranscript:string sent:sent];
+        [string release];
+    }
+}
+
 - (void)dealloc {
 	[_rootURL release];
 	

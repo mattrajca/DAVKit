@@ -31,6 +31,11 @@
 
 - (void)resetCredentialsCache;
 
+// Convenience methods that call through to the delegate
+- (void)appendFormatToReceivedTranscript:(NSString *)format, ...;
+- (void)appendFormatToSentTranscript:(NSString *)format, ...;
+- (void)appendFormatToTranscript:(NSString *)format arguments:(va_list)argList sent:(BOOL)sent;
+
 @end
 
 

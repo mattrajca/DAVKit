@@ -103,6 +103,13 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	return nil;
 }
 
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse;
+{
+    // TODO: Include HTTP version
+    [[self session] appendFormatToSentTranscript:@"%@ %@", [request HTTPMethod], [[request URL] path]];
+    return request;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	if (!_data) {
 		_data = [[NSMutableData alloc] init];

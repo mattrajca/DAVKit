@@ -1,12 +1,12 @@
 DAVKit
 ======
 
-DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit tests are also included for all supported requests. If DAVKit is missing something or you would like to submit a patch, please file an issue in the issue tracker. The DAVKit source tree is ARC-only as of 10/29/11.
+DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit tests are also included for all supported requests. If DAVKit is missing something, please file an issue on the Issues pages. Pull requests are also welcome. The DAVKit source tree is ARC-only as of 10/29/11.
 
 Basic Usage
 -----------
 
-To get started, include the DAVKit framework in your Mac OS X application target per usual. To use DAVKit on iPhone, copy the contents of the Sources directory into your own project.
+To get started, include the DAVKit framework in your Mac OS X application target per usual. To use DAVKit on iPhone, copy the contents of the Sources directory into your project.
 
 WebDAV requests are sent using the `DAVSession` class. Initialize `DAVSession` with a set of credentials and a root URL:
 
@@ -39,7 +39,7 @@ Thanks to Peter Hosey for the ISO8601DateFormatter class!
 License
 -------
 
-Copyright (c) 2010-2011 Matt Rajca
+Copyright (c) 2010-2012 Matt Rajca
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

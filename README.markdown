@@ -1,7 +1,7 @@
 DAVKit
 ======
 
-DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit tests are also included for all supported requests. If DAVKit is missing something, please file an issue on the Issues pages. Pull requests are also welcome. The DAVKit source tree is ARC-only as of 10/29/11.
+DAVKit is a Cocoa framework for communicating with WebDAV servers. It supports downloading, uploading, copying, moving, and deleting files and folders, all asynchronously. By subclassing `DAVRequest`, you can extend the existing support for WebDAV requests to suit your own needs. Unit tests are also included for all supported requests. If DAVKit is missing something, please file an issue on the Issues page. Pull requests are also welcome. The DAVKit source tree is ARC-only as of 10/29/11.
 
 Basic Usage
 -----------

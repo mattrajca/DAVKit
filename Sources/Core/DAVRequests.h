@@ -45,6 +45,6 @@
 }
 
 // Pass - [NSData dataWithContentsOfFile:] to upload a local file
-@property (retain) NSData *data;
+@property (strong) NSData *data;
 
 @end

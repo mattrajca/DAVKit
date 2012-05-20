@@ -54,10 +54,6 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
 	attributes:(NSDictionary *)attributeDict {
 	
-	if (_currentString) {
-		_currentString = nil;
-	}
-	
 	_currentString = [[NSMutableString alloc] init];
 	
 	if ([elementName isEqualToString:@"response"]) {
@@ -70,12 +66,13 @@
 
 - (NSDate *)_ISO8601DateWithString:(NSString *)aString {
 	ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+	
 	return [formatter dateFromString:aString];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    
+	
 	if ([elementName isEqualToString:@"href"]) {
 		_currentItem.href = [_currentString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}
@@ -102,10 +99,11 @@
 	}
 	else if ([elementName isEqualToString:@"response"]) {
 		[_items addObject:_currentItem];
+		
 		_currentItem = nil;
 	}
 	
-    _currentString = nil;
+	_currentString = nil;
 }
 
 @end

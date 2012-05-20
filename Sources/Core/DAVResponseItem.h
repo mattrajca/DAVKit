@@ -21,10 +21,10 @@ typedef enum {
 }
 
 @property (copy) NSString *href;
-@property (retain) NSDate *modificationDate;
+@property (strong) NSDate *modificationDate;
 @property (assign) long long contentLength;
-@property (retain) NSString *contentType;
-@property (retain) NSDate *creationDate;
+@property (strong) NSString *contentType;
+@property (strong) NSDate *creationDate;
 @property (assign) DAVResourceType resourceType;
 
 - (NSComparisonResult)compare:(DAVResponseItem *)item;

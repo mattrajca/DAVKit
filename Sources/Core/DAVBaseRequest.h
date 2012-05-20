@@ -11,8 +11,8 @@
 	
 }
 
-@property (retain) NSURL *rootURL;
-@property (retain) DAVCredentials *credentials;
+@property (strong) NSURL *rootURL;
+@property (strong) DAVCredentials *credentials;
 @property (assign) BOOL allowUntrustedCertificate;
 
 @end

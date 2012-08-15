@@ -77,8 +77,8 @@
 		C9FED598121D989900DD1DFF /* DAVRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVRequests.m; path = Sources/Core/DAVRequests.m; sourceTree = "<group>"; };
 		C9FED599121D989900DD1DFF /* DAVSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAVSession.h; path = Sources/Core/DAVSession.h; sourceTree = "<group>"; };
 		C9FED59A121D989900DD1DFF /* DAVSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAVSession.m; path = Sources/Core/DAVSession.m; sourceTree = "<group>"; };
-		C9FED5AD121D98B800DD1DFF /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISO8601DateFormatter.h; path = Sources/ISO8601/ISO8601DateFormatter.h; sourceTree = "<group>"; };
-		C9FED5AE121D98B800DD1DFF /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISO8601DateFormatter.m; path = Sources/ISO8601/ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		C9FED5AD121D98B800DD1DFF /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		C9FED5AE121D98B800DD1DFF /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		C9FED5B1121D98D600DD1DFF /* AMkColTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMkColTest.h; path = Sources/Tests/AMkColTest.h; sourceTree = "<group>"; };
 		C9FED5B2121D98D600DD1DFF /* AMkColTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMkColTest.m; path = Sources/Tests/AMkColTest.m; sourceTree = "<group>"; };
 		C9FED5B3121D98D600DD1DFF /* BPutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPutTest.h; path = Sources/Tests/BPutTest.h; sourceTree = "<group>"; };
@@ -207,6 +207,7 @@
 				C9FED5AE121D98B800DD1DFF /* ISO8601DateFormatter.m */,
 			);
 			name = ISO8601;
+			path = "iso-8601-date-formatter";
 			sourceTree = "<group>";
 		};
 		C9FF779F121C6BDF001250C7 /* Core */ = {

@@ -50,3 +50,15 @@
 @property (copy) NSString *dataMIMEType; // defaults to application/octet-stream
 
 @end
+
+@interface DAVPutStreamRequest : DAVRequest {
+    @private
+    NSString *_pfilepath;
+    NSString *_MIMEtype;
+}
+
+// Pass - Path to local file
+@property (strong) NSString *filepath;
+@property (copy) NSString *dataMIMEType; // defaults to application/octet-stream
+
+@end

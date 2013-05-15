@@ -156,3 +156,39 @@
 }
 
 @end
+
+@implementation DAVPutStreamRequest
+
+- (id)initWithPath:(NSString *)aPath {
+	if ((self = [super initWithPath:aPath])) {
+		self.dataMIMEType = @"application/octet-stream";
+	}
+	return self;
+}
+
+@synthesize filepath = _pfilepath;
+@synthesize dataMIMEType = _MIMEType;
+
+- (NSInputStream *)connection:(NSURLConnection *)connection needNewBodyStream:(NSURLRequest *)req {
+    
+    return [NSInputStream inputStreamWithFileAtPath:_pfilepath];
+}
+
+- (NSURLRequest *)request {
+	NSParameterAssert(_pfilepath != nil);
+	
+    NSError *error = nil;
+    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:_pfilepath
+                                                                            error:&error];
+    if (!attrs) return nil;
+    
+	NSString *len = [NSString stringWithFormat:@"%lld", attrs.fileSize];
+	NSMutableURLRequest *req = [self newRequestWithPath:self.path method:@"PUT"];
+	[req setValue:[self dataMIMEType] forHTTPHeaderField:@"Content-Type"];
+	[req setValue:len forHTTPHeaderField:@"Content-Length"];
+    [req setHTTPBodyStream:[NSInputStream inputStreamWithFileAtPath:_pfilepath]];
+	
+	return req;
+}
+
+@end

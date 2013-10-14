@@ -207,7 +207,7 @@
 				C9FED5AE121D98B800DD1DFF /* ISO8601DateFormatter.m */,
 			);
 			name = ISO8601;
-			path = "iso-8601-date-formatter";
+			path = "Sources/iso-8601-date-formatter";
 			sourceTree = "<group>";
 		};
 		C9FF779F121C6BDF001250C7 /* Core */ = {

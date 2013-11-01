@@ -102,13 +102,14 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
 	NSInteger code = [resp statusCode];
+    NSString *description = [resp.class localizedStringForStatusCode:code];
 	
 	if (code >= 400) {
 		[_connection cancel];
 		
 		NSError *error = [NSError errorWithDomain:DAVClientErrorDomain
 											 code:code
-										 userInfo:nil];
+										 userInfo:@{ NSLocalizedFailureReasonErrorKey : description }];
 		
 		[self _didFail:error];
 	}

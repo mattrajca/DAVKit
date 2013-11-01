@@ -20,7 +20,7 @@
 
 @implementation DAVRequest
 
-NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
+NSString *const DAVClientErrorDomain = @"org.w3.http";
 
 #define DEFAULT_TIMEOUT 60
 
